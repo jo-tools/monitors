@@ -4,13 +4,26 @@ Xojo example project
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ## Description
-An example Xojo project...
+HiDPI support is a must have nowadays. The Xojo Framework for ```TargetWindows``` has quite some positioning issues in a setup with multiple monitors that have different ScaleFactors.  
+This example Xojo project shows how to work around this by using the ```Windows API``` to position dialog windows, while falling back to the default Xojo Framework methods on other platforms.
+
+Use the buttons **on the right hand side** to use the ```Windows API``` on ```TargetWindows```.
+
+The examples show how to:
+- **CenterModal**
+  - Positions a Modal Dialog in the center of the parent Window.
+- **FitOnMonitor**
+  - Ensures the main Window is fully visible. This is highly recommended when positioning a Window according to user preferences (e.g. restore last position), as the user's setup might have changed since you've stored the last position.
+- Position a modal dialog at **a relative position to the main window**.
+- Explicitly position a modal dialog on **a relative position of a certain Monitor/Screen**.  
+  That's a feature not available in the Xojo Framework.
+- Explicitly position a modal dialog using Xojo's **"virtual screen coordinates"**.  
+  That's one of the biggest issues in the Xojo Framework in a multi-monitor with multi-scalefactor situation.
 
 ### ScreenShots
-<!--
-Example ScreenShot:
-![ScreenShot: Example](screenshots/example-screenshot.png?raw=true)
--->
+Example application: **Windows**
+![ScreenShot: Example](screenshots/monitors-windows.png?raw=true)
+
 
 ## Xojo
 ### Requirements
@@ -21,8 +34,10 @@ The Desktop application Xojo example project ```Monitors.xojo_project``` is usin
 - API 1
 
 ### How to use in your own Xojo project?
-1. aaa
-2. bbb
+1. Copy the Module ```modWindowPositionFix``` to your project.
+2. Have a look at how the example projects is using the provided Methods.  
+   E.g.: ```aWindowInstance.FitOnMonitor()```
+
 
 ## About
 Juerg Otter is a long term user of Xojo and working for [CM Informatik AG](https://cmiag.ch/). Their Application [CMI LehrerOffice](https://cmi-bildung.ch/) is a Xojo Design Award Winner 2018. In his leisure time Juerg provides some [bits and pieces for Xojo Developers](https://www.jo-tools.ch/).
