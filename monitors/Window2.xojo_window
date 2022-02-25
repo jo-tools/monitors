@@ -26,7 +26,7 @@ Begin Window Window2
    Title           =   "Window2"
    Visible         =   True
    Width           =   250
-   Begin PushButton PushButton1
+   Begin PushButton btnClose
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
@@ -58,7 +58,7 @@ Begin Window Window2
       Visible         =   True
       Width           =   80
    End
-   Begin Label Label1
+   Begin Label labInfo
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -93,7 +93,7 @@ Begin Window Window2
       Visible         =   True
       Width           =   210
    End
-   Begin Timer Timer1
+   Begin Timer timRefresh
       Index           =   -2147483648
       LockedInPosition=   True
       Mode            =   2
@@ -107,14 +107,14 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events PushButton1
+#tag Events btnClose
 	#tag Event
 		Sub Action()
 		  Close
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Label1
+#tag Events labInfo
 	#tag Event
 		Sub Open()
 		  Me.Text = "Left: " + Str(Self.Left) + EndOfLine + _
@@ -125,13 +125,13 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Timer1
+#tag Events timRefresh
 	#tag Event
 		Sub Action()
 		  Dim iPosX, iPosY As Integer
 		  Self.IsAtRelativeMonitorPosition(iPosX, iPosY)
 		  
-		  Label1.Text = "Left: " + Str(Self.Left) + ", Top: " + Str(Self.Top) + EndOfLine + _
+		  labInfo.Text = "Left: " + Str(Self.Left) + ", Top: " + Str(Self.Top) + EndOfLine + _
 		  "Width: " + Str(Self.Width) + ", Height: " + Str(Self.Height) + EndOfLine + _
 		  "at relative Monitor Pos: " + Str(iPosX) + "x, " + Str(iPosY) + "y"
 		  

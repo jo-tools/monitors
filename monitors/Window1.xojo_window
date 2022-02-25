@@ -138,7 +138,7 @@ Begin Window Window1
       Visible         =   True
       Width           =   240
    End
-   Begin Timer Timer1
+   Begin Timer timRefresh
       Index           =   -2147483648
       LockedInPosition=   True
       Mode            =   2
@@ -516,7 +516,7 @@ Begin Window Window1
       Visible         =   True
       Width           =   168
    End
-   Begin Separator Separator1
+   Begin Separator sepInfo
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   4
@@ -1477,7 +1477,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Timer1
+#tag Events timRefresh
 	#tag Event
 		Sub Action()
 		  Dim iIsOnScreen As Integer = Self.IsOnScreen
