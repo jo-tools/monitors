@@ -1942,7 +1942,7 @@ End
 		    End If
 		    
 		  #Else
-		    MsgBox "not implemented
+		    MsgBox "Enter FullScreen is not implemented for this build target."
 		  #EndIf
 		End Sub
 	#tag EndEvent
