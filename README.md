@@ -14,10 +14,13 @@ The examples show how to:
   - Positions a Modal Dialog in the center of the parent Window.
 - **FitOnMonitor**
   - Ensures the main Window is fully visible. This is highly recommended when positioning a Window according to user preferences (e.g. restore last position), as the user's setup might have changed since you've stored the last position.
-- Position a modal dialog at **a relative position to the main window**.
-- Explicitly position a modal dialog on **a relative position of a certain Monitor/Screen**.  
+- **FullScreen**
+  - Ensures the main Window covers all of the Monitor.
+- **Positioning** *(e.g. a modal dialog)*
+  - Position a modal dialog at **a relative position to the main window**.
+  - Explicitly position a modal dialog on **a relative position of a certain Monitor/Screen**.  
   That's a feature not available in the Xojo Framework.
-- Explicitly position a modal dialog using Xojo's **"virtual screen coordinates"**.  
+  - Explicitly position a modal dialog using Xojo's **"virtual screen coordinates"**.  
   That's one of the biggest issues in the Xojo Framework in a multi-monitor with multi-scalefactor situation.
 
 ### ScreenShots
