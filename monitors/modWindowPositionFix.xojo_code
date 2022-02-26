@@ -11,7 +11,8 @@ Protected Module modWindowPositionFix
 		      Dim hMonOrig As Integer = poWindow.IsOnMonitorHandle
 		      If (hMon = 0) Then hMon = hMonOrig
 		      
-		      Dim rectWork As REALbasic.Rect = GetMonitorRect(hmon, True)
+		      Dim bMonitorWorkArea As Boolean = (Not poWindow.FullScreen)
+		      Dim rectMonitor As REALbasic.Rect = GetMonitorRect(hmon, bMonitorWorkArea)
 		      Dim rectWindowOrig As REALbasic.Rect = poWindow.GetWindowRect
 		      Dim rectWindow As REALbasic.Rect = poWindow.GetWindowRect
 		      
@@ -20,7 +21,7 @@ Protected Module modWindowPositionFix
 		      
 		      'put on Monitor
 		      If (hMon <> hMonOrig) Then
-		        Call MoveWindow(poWindow.Handle, rectWork.Left, rectWork.Top, rectWindow.Width, rectWindow.Height, True)
+		        Call MoveWindow(poWindow.Handle, rectMonitor.Left, rectMonitor.Top, rectWindow.Width, rectWindow.Height, True)
 		        'in case the ScaleFactor has changed... re-assign the original Width/Height (let Xojo Framework do that calculation)
 		        If (poWindow.Width <> iWidth) Or (poWindow.Height <> iHeight) Then
 		          poWindow.Width = iWidth
@@ -42,26 +43,39 @@ Protected Module modWindowPositionFix
 		      rectWindowOrig = poWindow.GetWindowRect
 		      rectWindow = poWindow.GetWindowRect
 		      
+		      'fullscreen?
+		      If poWindow.FullScreen Then
+		        rectWindow = rectMonitor
+		        'set Width/Height so that Xojo Framework can do it's internals
+		        Dim dScale As Double = Round((poWindow.GetWindowRect.Height / poWindow.Bounds.Height)*100)/100
+		        poWindow.Width = rectMonitor.Width / dScale
+		        poWindow.Height = rectMonitor.Height / dScale
+		        iWidth = poWindow.Width
+		        iHeight = poWindow.Height
+		      End If
+		      
 		      'Window size needs to fit on Monitor
-		      If (rectWindow.Width > rectWork.Width) Then rectWindow.Width = rectWork.Width
-		      If (rectWindow.Height > rectWork.Height) Then rectWindow.Height = rectWork.Height
+		      If (rectWindow.Width > rectMonitor.Width) Then rectWindow.Width = rectMonitor.Width
+		      If (rectWindow.Height > rectMonitor.Height) Then rectWindow.Height = rectMonitor.Height
 		      
 		      'The Window now has a Width/Height that fits on the Monitor
 		      'so let's check the Position
 		      
-		      If (rectWindow.Left < rectWork.Left) Then rectWindow.Left = rectWork.Left
-		      If ((rectWindow.Left+rectWindow.Width) > rectWork.Right) Then rectWindow.Left = rectWork.Left + rectWork.Width - rectWindow.Width
+		      If (rectWindow.Left < rectMonitor.Left) Then rectWindow.Left = rectMonitor.Left
+		      If ((rectWindow.Left+rectWindow.Width) > rectMonitor.Right) Then rectWindow.Left = rectMonitor.Left + rectMonitor.Width - rectWindow.Width
 		      
-		      If (rectWindow.Top < rectWork.Top) Then rectWindow.Top = rectWork.Top
-		      If ((rectWindow.Top+rectWindow.Height) > rectWork.Bottom) Then rectWindow.Top = rectWork.Top + rectWork.Height - rectWindow.Height
+		      If (rectWindow.Top < rectMonitor.Top) Then rectWindow.Top = rectMonitor.Top
+		      If ((rectWindow.Top+rectWindow.Height) > rectMonitor.Bottom) Then rectWindow.Top = rectMonitor.Top + rectMonitor.Height - rectWindow.Height
 		      
 		      'finally: assign the position
 		      If (rectWindowOrig.Left <> rectWindow.Left) Or (rectWindowOrig.Top <> rectWindow.Top) Or (rectWindowOrig.Width <> rectWindow.Width) Or (rectWindowOrig.Height <> rectWindow.Height) Then
 		        Call MoveWindow(poWindow.Handle, rectWindow.Left, rectWindow.Top, rectWindow.Width, rectWindow.Height, True)
-		        'in case the ScaleFactor has changed... re-assign the original Width/Height (let Xojo Framework do that calculation)
-		        If (poWindow.Width <> iWidth) Or (poWindow.Height <> iHeight) Then
-		          poWindow.Width = iWidth
-		          poWindow.Height = iHeight
+		        If (Not poWindow.FullScreen) Then
+		          'in case the ScaleFactor has changed... re-assign the original Width/Height (let Xojo Framework do that calculation)
+		          If (poWindow.Width <> iWidth) Or (poWindow.Height <> iHeight) Then
+		            poWindow.Width = iWidth
+		            poWindow.Height = iHeight
+		          End If
 		        End If
 		      End If
 		      
@@ -204,7 +218,7 @@ Protected Module modWindowPositionFix
 		    Dim rectMonitor As REALbasic.Rect = GetMonitorRect(hMon, False)
 		    Dim rectWindow As REALbasic.Rect = poWindow.GetWindowRect
 		    Dim boundsWindow As REALbasic.Rect = poWindow.Bounds
-		    Dim dScale As Double = Round((rectWindow.Height / poWindow.Bounds.Height)*100)/100
+		    Dim dScale As Double = Round((rectWindow.Height / boundsWindow.Height)*100)/100
 		    
 		    'respect size of window decoration
 		    Dim iWindowLeftDecoration As Integer = poWindow.Left - poWindow.Bounds.Left

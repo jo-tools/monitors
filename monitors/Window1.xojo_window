@@ -78,7 +78,7 @@ Begin Window Window1
       LockRight       =   False
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   19
+      TabIndex        =   20
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -271,7 +271,7 @@ Begin Window Window1
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   22
+      TabIndex        =   23
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -303,7 +303,7 @@ Begin Window Window1
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   20
+      TabIndex        =   21
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -405,7 +405,7 @@ Begin Window Window1
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   25
+      TabIndex        =   26
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -437,7 +437,7 @@ Begin Window Window1
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   26
+      TabIndex        =   27
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -469,7 +469,7 @@ Begin Window Window1
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   27
+      TabIndex        =   28
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -496,12 +496,12 @@ Begin Window Window1
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   False
       Multiline       =   False
       Scope           =   2
       Selectable      =   False
-      TabIndex        =   24
+      TabIndex        =   25
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "relative to Window (+x,+y):"
@@ -558,7 +558,7 @@ Begin Window Window1
       LockRight       =   False
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   21
+      TabIndex        =   22
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -590,7 +590,7 @@ Begin Window Window1
       LockRight       =   False
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   23
+      TabIndex        =   24
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -700,12 +700,12 @@ Begin Window Window1
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   False
       Multiline       =   False
       Scope           =   2
       Selectable      =   False
-      TabIndex        =   29
+      TabIndex        =   30
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "on Screen:"
@@ -740,7 +740,7 @@ Begin Window Window1
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   30
+      TabIndex        =   31
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -772,7 +772,7 @@ Begin Window Window1
       Multiline       =   False
       Scope           =   2
       Selectable      =   False
-      TabIndex        =   31
+      TabIndex        =   32
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "at Pos (x,y):"
@@ -816,7 +816,7 @@ Begin Window Window1
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   32
+      TabIndex        =   33
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "100"
@@ -859,7 +859,7 @@ Begin Window Window1
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   33
+      TabIndex        =   34
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "100"
@@ -894,7 +894,7 @@ Begin Window Window1
       LockRight       =   False
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   28
+      TabIndex        =   29
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -926,7 +926,7 @@ Begin Window Window1
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   34
+      TabIndex        =   35
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -988,12 +988,12 @@ Begin Window Window1
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   False
       Multiline       =   False
       Scope           =   2
       Selectable      =   False
-      TabIndex        =   36
+      TabIndex        =   37
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "at Xojo Window.Left/Top:"
@@ -1028,7 +1028,7 @@ Begin Window Window1
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   39
+      TabIndex        =   40
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -1060,7 +1060,7 @@ Begin Window Window1
       LockRight       =   False
       LockTop         =   False
       Scope           =   2
-      TabIndex        =   35
+      TabIndex        =   36
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -1100,7 +1100,7 @@ Begin Window Window1
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   37
+      TabIndex        =   38
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "0"
@@ -1143,7 +1143,7 @@ Begin Window Window1
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   38
+      TabIndex        =   39
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "0"
@@ -1258,7 +1258,7 @@ Begin Window Window1
       LockBottom      =   False
       LockedInPosition=   True
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Multiline       =   False
       Scope           =   2
@@ -1328,7 +1328,7 @@ Begin Window Window1
       LockBottom      =   False
       LockedInPosition=   True
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Multiline       =   False
       Scope           =   2
@@ -1411,6 +1411,38 @@ Begin Window Window1
       Visible         =   True
       Width           =   106
    End
+   Begin PushButton btnFullScreen
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Enter FullScreen"
+      Default         =   False
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   280
+      LockBottom      =   True
+      LockedInPosition=   True
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   2
+      TabIndex        =   19
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   409
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   240
+   End
 End
 #tag EndWindow
 
@@ -1420,6 +1452,11 @@ End
 		  Self.Title = "Monitors"
 		End Sub
 	#tag EndEvent
+
+
+	#tag Property, Flags = &h21
+		Private edictFullScreen As Dictionary
+	#tag EndProperty
 
 
 	#tag Constant, Name = constAppName, Type = String, Dynamic = False, Default = \"Monitors", Scope = Private
@@ -1619,9 +1656,9 @@ End
 		      If System.IsFunctionAvailable("GetDpiForMonitor", "Shcore") Then
 		        Soft Declare Function GetDpiForMonitor Lib "Shcore" (hMonitor As Integer, dpiType As Integer, ByRef dpiX As UInt32, ByRef dpiY As UInt32) As Integer
 		        Const MDT_Effective_DPI = 0
-		        Dim Rawxdpi, Effxdpi, Effydpi As UInt32
+		        Dim Effxdpi, Effydpi As UInt32
 		        Call GetDpiForMonitor(hMon, MDT_Effective_DPI, Effxdpi, Effydpi)
-		        Dim dRatio As Double =  Effxdpi/96
+		        'Dim dRatio As Double =  Effxdpi/96
 		      End If
 		      
 		      sMonitors.Append("Monitor(" + Str(i) + ") => " + _
@@ -1869,6 +1906,45 @@ End
 		  
 		  Return True
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnFullScreen
+	#tag Event
+		Sub Action()
+		  #If TargetWindows Then
+		    If (edictFullScreen = Nil) Then edictFullScreen = New Dictionary
+		    
+		    Dim iMonitorIndex, iPosX, iPosY As Integer
+		    
+		    If Self.FullScreen Then
+		      Me.Caption = "Enter FullScreen"
+		      Self.MenuBar = MainMenuBar
+		      Self.FullScreen = False
+		      
+		      iMonitorIndex = edictFullScreen.Lookup("iMonitorIndex", Self.IsOnMonitorIndex)
+		      iPosX = edictFullScreen.Lookup("iPosX", 0)
+		      iPosY = edictFullScreen.Lookup("iPosY", 0)
+		      Self.SetPosition_AtMonitorPosition(iMonitorIndex, iPosX, iPosY)
+		      
+		    Else
+		      Me.Caption = "Exit FullScreen"
+		      iMonitorIndex = Self.IsOnMonitorIndex
+		      Self.IsAtRelativeMonitorPosition(iPosX, iPosY)
+		      
+		      edictFullScreen.Value("iMonitorIndex") = iMonitorIndex
+		      edictFullScreen.Value("iPosX") = iPosX
+		      edictFullScreen.Value("iPosY") = iPosY
+		      
+		      Self.MenuBar = Nil
+		      Self.FullScreen = True
+		      
+		      Self.FitOnMonitorIndex(iMonitorIndex)
+		    End If
+		    
+		  #Else
+		    MsgBox "not implemented
+		  #EndIf
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
