@@ -7,7 +7,7 @@ Protected Module modWindowPositionFix
 		  
 		  Try
 		    
-		    If (piScreen = -1) Then piScreen = poWindow.IsOnScreen
+		    If (piScreen = -1) Then piScreen = poWindow.IsOnDisplay
 		    If (piScreen >= DesktopDisplay.DisplayCount) Then piScreen = 0
 		    
 		    Dim oScreen As DesktopDisplay = DesktopDisplay.DisplayAt(piScreen)
@@ -231,81 +231,15 @@ Protected Module modWindowPositionFix
 		    piPosY = (rectWindow.Top - rectMonitor.Top)/dScale
 		    
 		  #Else
-		    Dim iScreen As Integer = poWindow.IsOnScreen
+		    Dim iScreen As Integer = poWindow.IsOnDisplay
 		    piPosX = poWindow.Left - DesktopDisplay.DisplayAt(iScreen).Left
 		    piPosY = poWindow.Top - DesktopDisplay.DisplayAt(iScreen).Top
 		  #EndIf
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Function IsOnMonitorHandle(Extends poWindow As DesktopWindow) As Integer
-		  #If TargetWindows Then
-		    Declare Function MonitorFromWindow Lib "User32" (hwnd As Ptr, dwFlags As UInt32) As Integer
-		    Const MONITOR_DEFAULTTONULL As UInt32 = &H0
-		    Const MONITOR_DEFAULTTOPRIMARY As UInt32 = &H1
-		    Const MONITOR_DEFAULTTONEAREST As UInt32 = &H2
-		    
-		    Dim hMon As Integer = MonitorFromWindow(poWindow.Handle, MONITOR_DEFAULTTONEAREST)
-		    Return hMon
-		  #Else
-		    #Pragma unused poWindow
-		  #EndIf
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Function IsOnMonitorIndex(Extends poWindow As DesktopWindow) As Integer
-		  If (DesktopDisplay.DisplayCount < 2) Then Return 0
-		  
-		  #If TargetWindows Then
-		    MonitorsGet
-		    Dim hMon As Integer = poWindow.IsOnMonitorHandle
-		    If (eiMonitorHandles.IndexOf(hMon) >= 0) Then Return eiMonitorHandles.IndexOf(hMon)
-		    Return 0
-		  #Else
-		    Return poWindow.IsOnScreen
-		  #EndIf
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Function IsOnMonitorIndex(Extends poRect As Xojo.Rect) As Integer
-		  If (DesktopDisplay.DisplayCount < 2) Then Return 0
-		  
-		  #If TargetWindows Then
-		    Declare Function MonitorFromRect  Lib "User32" (ByRef lprc As LPRECT, dwFlags As UInt32) As Integer
-		    Const MONITOR_DEFAULTTONULL As UInt32 = &H0
-		    Const MONITOR_DEFAULTTOPRIMARY As UInt32 = &H1
-		    Const MONITOR_DEFAULTTONEAREST As UInt32 = &H2
-		    
-		    Dim lprc As LPRECT
-		    lprc.Top = poRect.Top
-		    lprc.Left = poRect.Left
-		    //NOTE: poRect has Xojo's virtual Width/Height
-		    //      So this LPRECT won't be the correct size
-		    //      otherwise we would need to get the ScaleFactor at Point Top/Left
-		    //      and multiply with the Scale
-		    //      However, it's good enough for now... it just doesn't account
-		    //      for the situation where only the lower-right is visible on a Screen
-		    lprc.Right = poRect.Left + poRect.Width
-		    lprc.Bottom = poRect.Top + poRect.Height
-		    
-		    Dim hMon As Integer = MonitorFromRect(lprc, MONITOR_DEFAULTTONEAREST)
-		    
-		    MonitorsGet
-		    If (eiMonitorHandles.IndexOf(hMon) >= 0) Then Return eiMonitorHandles.IndexOf(hMon)
-		    Return 0
-		    
-		  #Else
-		    Return poRect.IsOnScreen
-		  #EndIf
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Function IsOnScreen(Extends poWindow As DesktopWindow) As Integer
+		Function IsOnDisplay(Extends poWindow As DesktopWindow) As Integer
 		  If (DesktopDisplay.DisplayCount < 2) Then Return 0
 		  
 		  Try
@@ -314,7 +248,7 @@ Protected Module modWindowPositionFix
 		    
 		    'that's why we check the position using .Left/.Top values
 		    Dim currentWindowBounds As New Xojo.Rect(poWindow.Left, poWindow.Top, poWindow.Width, poWindow.Height)
-		    Return currentWindowBounds.IsOnScreen
+		    Return currentWindowBounds.IsOnDisplay
 		    
 		  Catch err As RuntimeException
 		    Return 0
@@ -323,7 +257,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Function IsOnScreen(Extends poRect As Xojo.Rect) As Integer
+		Function IsOnDisplay(Extends poRect As Xojo.Rect) As Integer
 		  If (DesktopDisplay.DisplayCount < 2) Then Return 0
 		  
 		  Try
@@ -360,6 +294,72 @@ Protected Module modWindowPositionFix
 		  Catch err As RuntimeException
 		    Return 0
 		  End Try
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
+		Function IsOnMonitorHandle(Extends poWindow As DesktopWindow) As Integer
+		  #If TargetWindows Then
+		    Declare Function MonitorFromWindow Lib "User32" (hwnd As Ptr, dwFlags As UInt32) As Integer
+		    Const MONITOR_DEFAULTTONULL As UInt32 = &H0
+		    Const MONITOR_DEFAULTTOPRIMARY As UInt32 = &H1
+		    Const MONITOR_DEFAULTTONEAREST As UInt32 = &H2
+		    
+		    Dim hMon As Integer = MonitorFromWindow(poWindow.Handle, MONITOR_DEFAULTTONEAREST)
+		    Return hMon
+		  #Else
+		    #Pragma unused poWindow
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
+		Function IsOnMonitorIndex(Extends poWindow As DesktopWindow) As Integer
+		  If (DesktopDisplay.DisplayCount < 2) Then Return 0
+		  
+		  #If TargetWindows Then
+		    MonitorsGet
+		    Dim hMon As Integer = poWindow.IsOnMonitorHandle
+		    If (eiMonitorHandles.IndexOf(hMon) >= 0) Then Return eiMonitorHandles.IndexOf(hMon)
+		    Return 0
+		  #Else
+		    Return poWindow.IsOnDisplay
+		  #EndIf
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
+		Function IsOnMonitorIndex(Extends poRect As Xojo.Rect) As Integer
+		  If (DesktopDisplay.DisplayCount < 2) Then Return 0
+		  
+		  #If TargetWindows Then
+		    Declare Function MonitorFromRect  Lib "User32" (ByRef lprc As LPRECT, dwFlags As UInt32) As Integer
+		    Const MONITOR_DEFAULTTONULL As UInt32 = &H0
+		    Const MONITOR_DEFAULTTOPRIMARY As UInt32 = &H1
+		    Const MONITOR_DEFAULTTONEAREST As UInt32 = &H2
+		    
+		    Dim lprc As LPRECT
+		    lprc.Top = poRect.Top
+		    lprc.Left = poRect.Left
+		    //NOTE: poRect has Xojo's virtual Width/Height
+		    //      So this LPRECT won't be the correct size
+		    //      otherwise we would need to get the ScaleFactor at Point Top/Left
+		    //      and multiply with the Scale
+		    //      However, it's good enough for now... it just doesn't account
+		    //      for the situation where only the lower-right is visible on a Screen
+		    lprc.Right = poRect.Left + poRect.Width
+		    lprc.Bottom = poRect.Top + poRect.Height
+		    
+		    Dim hMon As Integer = MonitorFromRect(lprc, MONITOR_DEFAULTTONEAREST)
+		    
+		    MonitorsGet
+		    If (eiMonitorHandles.IndexOf(hMon) >= 0) Then Return eiMonitorHandles.IndexOf(hMon)
+		    Return 0
+		    
+		  #Else
+		    Return poRect.IsOnDisplay
+		  #EndIf
+		  
 		End Function
 	#tag EndMethod
 
@@ -652,11 +652,11 @@ Protected Module modWindowPositionFix
 		    End Try
 		    
 		  #Else
-		    Dim iParentIsOnScreen As Integer = -1
+		    Dim iParentIsOnDisplay As Integer = -1
 		    
 		    If (poParent <> Nil) Then
-		      iParentIsOnScreen = poParent.IsOnScreen
-		      poWindow.PutOnScreen(iParentIsOnScreen)
+		      iParentIsOnDisplay = poParent.IsOnDisplay
+		      poWindow.PutOnScreen(iParentIsOnDisplay)
 		      
 		      Dim parentWindowBounds As Xojo.Rect = poParent.Bounds
 		      Dim currentWindowBounds As Xojo.Rect = poWindow.Bounds
@@ -677,7 +677,7 @@ Protected Module modWindowPositionFix
 		    End If
 		    
 		    'just to make sure it fits on Screen
-		    poWindow.FitOnDisplay(iParentIsOnScreen)
+		    poWindow.FitOnDisplay(iParentIsOnDisplay)
 		    
 		  #EndIf
 		  
@@ -750,7 +750,7 @@ Protected Module modWindowPositionFix
 		          
 		          'we obviously can't use the workaround from above, as IsOnMonitor is using
 		          'the absolute positions, but Window.Left doesn't do that any longer
-		          iPosRectIsOnMonitorIndex = poSetPositionRect.IsOnScreen
+		          iPosRectIsOnMonitorIndex = poSetPositionRect.IsOnDisplay
 		        #EndIf
 		        poWindow.PutOnMonitorIndex(iPosRectIsOnMonitorIndex)
 		        
@@ -835,10 +835,10 @@ Protected Module modWindowPositionFix
 		  #Else
 		    If (poParent = Nil) Then
 		      'make sure it's on the screen (so that it gets its ScaleFactor assigned)
-		      poWindow.PutOnScreen(poSetPositionRect.IsOnScreen)
+		      poWindow.PutOnScreen(poSetPositionRect.IsOnDisplay)
 		    Else
 		      'make sure it's on the same monitor first
-		      poWindow.PutOnScreen(poParent.IsOnScreen)
+		      poWindow.PutOnScreen(poParent.IsOnDisplay)
 		    End If
 		    
 		    'assign position

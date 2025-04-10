@@ -144,7 +144,7 @@ Begin DesktopWindow Window1
       Scope           =   2
       TabPanelIndex   =   0
    End
-   Begin DesktopLabel labIsOnScreen
+   Begin DesktopLabel labIsOnDisplay
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -1475,10 +1475,10 @@ End
 #tag Events timRefresh
 	#tag Event
 		Sub Action()
-		  Dim iIsOnScreen As Integer = Self.IsOnScreen
-		  labIsOnScreen.Text = "IsOnScreen: " + iIsOnScreen.ToString + EndOfLine + _
-		  "Left: " + DesktopDisplay.DisplayAt(iIsOnScreen).Left.ToString + ", Top: " + DesktopDisplay.DisplayAt(iIsOnScreen).Top.ToString + EndOfLine + _
-		  "Dimension: " + DesktopDisplay.DisplayAt(iIsOnScreen).Width.ToString + "x" + DesktopDisplay.DisplayAt(iIsOnScreen).Height.ToString + EndOfLine + _
+		  Dim iIsOnDisplay As Integer = Self.IsOnDisplay
+		  labIsOnDisplay.Text = "IsOnDisplay: " + iIsOnDisplay.ToString + EndOfLine + _
+		  "Left: " + DesktopDisplay.DisplayAt(iIsOnDisplay).Left.ToString + ", Top: " + DesktopDisplay.DisplayAt(iIsOnDisplay).Top.ToString + EndOfLine + _
+		  "Dimension: " + DesktopDisplay.DisplayAt(iIsOnDisplay).Width.ToString + "x" + DesktopDisplay.DisplayAt(iIsOnDisplay).Height.ToString + EndOfLine + _
 		  "ScaleFactor: " + Format(Self.ScaleFactor, "#0.0#")
 		  
 		  labWindowPosition.Text = "Window.Bounds: " + _
@@ -1509,7 +1509,7 @@ End
 		  
 		  Dim iPosX, iPosY As Integer
 		  
-		  Dim iScreen As Integer = Self.IsOnScreen 'that's just using Xojo Framework (for WindowsAPI, use self.IsOnMonitorIndex)
+		  Dim iScreen As Integer = Self.IsOnDisplay 'that's just using Xojo Framework (for WindowsAPI, use self.IsOnMonitorIndex)
 		  iPosX = Self.Left - DesktopDisplay.DisplayAt(iScreen).Left
 		  iPosY = Self.Top - DesktopDisplay.DisplayAt(iScreen).Top
 		  labPosRelativeOnScreen.Text = "at relative Screen Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
