@@ -1,6 +1,54 @@
 #tag Module
 Protected Module modWindowPositionFix
 	#tag CompatibilityFlags = ( TargetDesktop and ( Target32Bit or Target64Bit ) )
+	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
+		Sub FitOnDisplay(Extends poWindow As DesktopWindow, piScreen As Integer = -1)
+		  'Adjust Position of Window so that it fits entirely on Screen
+		  
+		  Try
+		    
+		    If (piScreen = -1) Then piScreen = poWindow.IsOnScreen
+		    If (piScreen >= DesktopDisplay.DisplayCount) Then piScreen = 0
+		    
+		    Dim oScreen As DesktopDisplay = DesktopDisplay.DisplayAt(piScreen)
+		    Dim iScreenAvailableLeft As Integer = oScreen.AvailableLeft
+		    
+		    'check min/max Width/Height
+		    If (poWindow.MinimumWidth > 0) And (poWindow.Width < poWindow.MinimumWidth) Then poWindow.Width = poWindow.MinimumWidth
+		    If (poWindow.MinimumHeight > 0) And (poWindow.Height < poWindow.MinimumHeight) Then poWindow.Height = poWindow.MinimumHeight
+		    If (poWindow.MaximumWidth > 0) And (poWindow.Width > poWindow.MaximumWidth) Then poWindow.Width = poWindow.MaximumWidth
+		    If (poWindow.MaximumHeight > 0) And (poWindow.Height > poWindow.MaximumHeight) Then poWindow.Height = poWindow.MaximumHeight
+		    
+		    'Width/Height must have some reasonable value and can't be 0
+		    If (poWindow.Width <= 0) Then poWindow.Width = 640
+		    If (poWindow.Height <= 0) Then poWindow.Height = 480
+		    
+		    'use Bounds (respects window decoration, toolbar)
+		    Dim currentWindowBounds As Xojo.Rect = poWindow.Bounds
+		    Dim setWindowBounds As New Xojo.Rect(currentWindowBounds.Left, currentWindowBounds.Top, currentWindowBounds.Width, currentWindowBounds.Height)
+		    
+		    'Window size needs to fit on Screen
+		    If (setWindowBounds.Height > oScreen.AvailableHeight) Then setWindowBounds.Height = oScreen.AvailableHeight
+		    If (setWindowBounds.Width > oScreen.AvailableWidth) Then poWindow.Width = oScreen.AvailableWidth
+		    
+		    'The Window now has a Width/Height that fits on the Screen
+		    'so let's check the Position
+		    
+		    If (setWindowBounds.Left < iScreenAvailableLeft) Then setWindowBounds.Left = iScreenAvailableLeft
+		    If (setWindowBounds.Left > (iScreenAvailableLeft + oScreen.AvailableWidth - setWindowBounds.Width)) Then setWindowBounds.Left = (iScreenAvailableLeft + oScreen.AvailableWidth - setWindowBounds.Width)
+		    
+		    If (setWindowBounds.Top < oScreen.AvailableTop) Then setWindowBounds.Top = oScreen.AvailableTop
+		    If (setWindowBounds.Top > (oScreen.AvailableTop + oScreen.AvailableHeight - setWindowBounds.Height)) Then setWindowBounds.Top = (oScreen.AvailableTop + oScreen.AvailableHeight - setWindowBounds.Height)
+		    
+		    'finally: assign the position
+		    poWindow.Bounds = setWindowBounds
+		    
+		  Catch err As RuntimeException
+		    'ignore
+		  End Try
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
 		Sub FitOnMonitor(Extends poWindow As DesktopWindow, hMon As Integer = 0)
 		  #If TargetWindows Then
@@ -84,7 +132,7 @@ Protected Module modWindowPositionFix
 		    End Try
 		    
 		  #Else
-		    If (hMon = 0) Then poWindow.FitOnScreen
+		    If (hMon = 0) Then poWindow.FitOnDisplay
 		  #EndIf
 		End Sub
 	#tag EndMethod
@@ -99,56 +147,8 @@ Protected Module modWindowPositionFix
 		    End If
 		    poWindow.FitOnMonitor(hMon)
 		  #Else
-		    poWindow.FitOnScreen(piMonitorIndex)
+		    poWindow.FitOnDisplay(piMonitorIndex)
 		  #EndIf
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Sub FitOnScreen(Extends poWindow As DesktopWindow, piScreen As Integer = -1)
-		  'Adjust Position of Window so that it fits entirely on Screen
-		  
-		  Try
-		    
-		    If (piScreen = -1) Then piScreen = poWindow.IsOnScreen
-		    If (piScreen >= DesktopDisplay.DisplayCount) Then piScreen = 0
-		    
-		    Dim oScreen As DesktopDisplay = DesktopDisplay.DisplayAt(piScreen)
-		    Dim iScreenAvailableLeft As Integer = oScreen.AvailableLeft
-		    
-		    'check min/max Width/Height
-		    If (poWindow.MinimumWidth > 0) And (poWindow.Width < poWindow.MinimumWidth) Then poWindow.Width = poWindow.MinimumWidth
-		    If (poWindow.MinimumHeight > 0) And (poWindow.Height < poWindow.MinimumHeight) Then poWindow.Height = poWindow.MinimumHeight
-		    If (poWindow.MaximumWidth > 0) And (poWindow.Width > poWindow.MaximumWidth) Then poWindow.Width = poWindow.MaximumWidth
-		    If (poWindow.MaximumHeight > 0) And (poWindow.Height > poWindow.MaximumHeight) Then poWindow.Height = poWindow.MaximumHeight
-		    
-		    'Width/Height must have some reasonable value and can't be 0
-		    If (poWindow.Width <= 0) Then poWindow.Width = 640
-		    If (poWindow.Height <= 0) Then poWindow.Height = 480
-		    
-		    'use Bounds (respects window decoration, toolbar)
-		    Dim currentWindowBounds As Xojo.Rect = poWindow.Bounds
-		    Dim setWindowBounds As New Xojo.Rect(currentWindowBounds.Left, currentWindowBounds.Top, currentWindowBounds.Width, currentWindowBounds.Height)
-		    
-		    'Window size needs to fit on Screen
-		    If (setWindowBounds.Height > oScreen.AvailableHeight) Then setWindowBounds.Height = oScreen.AvailableHeight
-		    If (setWindowBounds.Width > oScreen.AvailableWidth) Then poWindow.Width = oScreen.AvailableWidth
-		    
-		    'The Window now has a Width/Height that fits on the Screen
-		    'so let's check the Position
-		    
-		    If (setWindowBounds.Left < iScreenAvailableLeft) Then setWindowBounds.Left = iScreenAvailableLeft
-		    If (setWindowBounds.Left > (iScreenAvailableLeft + oScreen.AvailableWidth - setWindowBounds.Width)) Then setWindowBounds.Left = (iScreenAvailableLeft + oScreen.AvailableWidth - setWindowBounds.Width)
-		    
-		    If (setWindowBounds.Top < oScreen.AvailableTop) Then setWindowBounds.Top = oScreen.AvailableTop
-		    If (setWindowBounds.Top > (oScreen.AvailableTop + oScreen.AvailableHeight - setWindowBounds.Height)) Then setWindowBounds.Top = (oScreen.AvailableTop + oScreen.AvailableHeight - setWindowBounds.Height)
-		    
-		    'finally: assign the position
-		    poWindow.Bounds = setWindowBounds
-		    
-		  Catch err As RuntimeException
-		    'ignore
-		  End Try
 		End Sub
 	#tag EndMethod
 
@@ -608,7 +608,7 @@ Protected Module modWindowPositionFix
 		  poWindow.Top = DesktopDisplay.DisplayAt(piScreenIndex).Top + piPosY
 		  
 		  'This is buggy, too - so let's just see what happens when setting the position
-		  'poWindow.FitOnScreen()
+		  'poWindow.FitOnDisplay()
 		  
 		End Sub
 	#tag EndMethod
@@ -677,7 +677,7 @@ Protected Module modWindowPositionFix
 		    End If
 		    
 		    'just to make sure it fits on Screen
-		    poWindow.FitOnScreen(iParentIsOnScreen)
+		    poWindow.FitOnDisplay(iParentIsOnScreen)
 		    
 		  #EndIf
 		  
@@ -706,7 +706,7 @@ Protected Module modWindowPositionFix
 		    If (poWindow.Height <> poSetPositionRect.Height) Then poWindow.Height = poSetPositionRect.Height
 		    
 		    'make sure it fits on the Screen
-		    poWindow.FitOnScreen
+		    poWindow.FitOnDisplay
 		    Return
 		  End If
 		  
@@ -851,7 +851,7 @@ Protected Module modWindowPositionFix
 		    If (poWindow.Height <> poSetPositionRect.Height) Then poWindow.Height = poSetPositionRect.Height
 		    
 		    'make sure it fits on the Screen
-		    poWindow.FitOnScreen
+		    poWindow.FitOnDisplay
 		  #EndIf
 		End Sub
 	#tag EndMethod

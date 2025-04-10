@@ -136,6 +136,7 @@ Begin DesktopWindow Window1
       Width           =   240
    End
    Begin Timer timRefresh
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   True
       Mode            =   2
@@ -525,11 +526,11 @@ Begin DesktopWindow Window1
       _mName          =   ""
       _mPanelIndex    =   0
    End
-   Begin DesktopButton btnFitOnScreen
+   Begin DesktopButton btnFitOnDisplay
       AllowAutoDeactivate=   True
       Bold            =   False
       Cancel          =   False
-      Caption         =   "FitOnScreen"
+      Caption         =   "FitOnDisplay"
       Default         =   False
       Enabled         =   True
       FontName        =   "System"
@@ -1578,10 +1579,10 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnFitOnScreen
+#tag Events btnFitOnDisplay
 	#tag Event
 		Sub Pressed()
-		  Self.FitOnScreen
+		  Self.FitOnDisplay
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1594,7 +1595,7 @@ End
 		  oWnd.Top = Self.Top + Val(lstAddY.SelectedRowText)
 		  
 		  'This is buggy, too - so let's just see what happens when setting the position
-		  'oWnd.FitOnScreen()
+		  'oWnd.FitOnDisplay()
 		  
 		  oWnd.ShowModal
 		  
@@ -1706,7 +1707,7 @@ End
 		  oWnd.Top = Val(edtPosAbsoluteY.Text)
 		  
 		  'This is buggy, too - so let's just see what happens when setting the position
-		  'oWnd.FitOnScreen()
+		  'oWnd.FitOnDisplay()
 		  
 		  oWnd.ShowModal
 		  
