@@ -388,8 +388,8 @@ Begin DesktopWindow Window1
       Left            =   268
       LockBottom      =   True
       LockedInPosition=   True
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   False
       Scope           =   2
       SelectedRowIndex=   0
@@ -418,8 +418,8 @@ Begin DesktopWindow Window1
       Left            =   340
       LockBottom      =   True
       LockedInPosition=   True
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   False
       Scope           =   2
       SelectedRowIndex=   0
@@ -718,8 +718,8 @@ Begin DesktopWindow Window1
       Left            =   166
       LockBottom      =   True
       LockedInPosition=   True
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   False
       Scope           =   2
       SelectedRowIndex=   0
@@ -747,8 +747,8 @@ Begin DesktopWindow Window1
       Left            =   238
       LockBottom      =   True
       LockedInPosition=   True
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   False
       Multiline       =   False
       Scope           =   2
@@ -787,8 +787,8 @@ Begin DesktopWindow Window1
       Left            =   320
       LockBottom      =   True
       LockedInPosition=   True
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   False
       MaximumCharactersAllowed=   0
       Password        =   False
@@ -828,8 +828,8 @@ Begin DesktopWindow Window1
       Left            =   382
       LockBottom      =   True
       LockedInPosition=   True
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   False
       MaximumCharactersAllowed=   0
       Password        =   False
@@ -1063,8 +1063,8 @@ Begin DesktopWindow Window1
       Left            =   268
       LockBottom      =   True
       LockedInPosition=   True
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   False
       MaximumCharactersAllowed=   0
       Password        =   False
@@ -1104,8 +1104,8 @@ Begin DesktopWindow Window1
       Left            =   340
       LockBottom      =   True
       LockedInPosition=   True
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   False
       MaximumCharactersAllowed=   0
       Password        =   False
@@ -1514,10 +1514,12 @@ End
 		  iPosY = Self.Top - DesktopDisplay.DisplayAt(iDisplay).Top
 		  labPosRelativeOnDisplay.Text = "at relative Display Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
 		  
-		  Self.IsAtRelativeMonitorPosition(iPosX, iPosY) 'that's using Windows API if possible
-		  labPosRelativeOnMonitor.Text = "at relative Monitor Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
-		  
-		  
+		  #If TargetWindows Then
+		    Self.IsAtRelativeMonitorPosition(iPosX, iPosY) 'that's using Windows API if possible
+		    labPosRelativeOnMonitor.Text = "at relative Monitor Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
+		  #Else
+		    labPosRelativeOnMonitor.Text = "n/a"
+		  #EndIf
 		End Sub
 	#tag EndEvent
 #tag EndEvents
