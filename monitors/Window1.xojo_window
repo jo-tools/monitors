@@ -88,7 +88,7 @@ Begin DesktopWindow Window1
       Visible         =   True
       Width           =   240
    End
-   Begin DesktopTextArea edtScreens
+   Begin DesktopTextArea edtDisplays
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   True
@@ -670,7 +670,7 @@ Begin DesktopWindow Window1
       Visible         =   True
       Width           =   240
    End
-   Begin DesktopLabel labSetPosOnScreen
+   Begin DesktopLabel labSetPosOnDisplay
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -703,7 +703,7 @@ Begin DesktopWindow Window1
       Visible         =   True
       Width           =   75
    End
-   Begin DesktopPopupMenu lstPosScreen
+   Begin DesktopPopupMenu lstPosDisplay
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -733,7 +733,7 @@ Begin DesktopWindow Window1
       Visible         =   True
       Width           =   60
    End
-   Begin DesktopLabel labSetPosOnScreenAtPos
+   Begin DesktopLabel labSetPosOnDisplayAtPos
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -849,7 +849,7 @@ Begin DesktopWindow Window1
       Visible         =   True
       Width           =   50
    End
-   Begin DesktopButton btnSetPosOnScreen
+   Begin DesktopButton btnSetPosOnDisplay
       AllowAutoDeactivate=   True
       Bold            =   False
       Cancel          =   False
@@ -881,7 +881,7 @@ Begin DesktopWindow Window1
       Visible         =   True
       Width           =   61
    End
-   Begin DesktopButton btnSetPosOnScreenWinAPI
+   Begin DesktopButton btnSetPosOnDisplayWinAPI
       AllowAutoDeactivate=   True
       Bold            =   False
       Cancel          =   False
@@ -1454,12 +1454,12 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events edtScreens
+#tag Events edtDisplays
 	#tag Event
 		Sub Opening()
-		  Dim sScreens() As String
+		  Dim sDisplays() As String
 		  For i As Integer = 0 To DesktopDisplay.DisplayCount-1
-		    sScreens.Add("DisplayAt(" + i.ToString + ") => " + _
+		    sDisplays.Add("DisplayAt(" + i.ToString + ") => " + _
 		    "Left: " + DesktopDisplay.DisplayAt(i).Left.ToString + _
 		    ", Top: " + DesktopDisplay.DisplayAt(i).Top.ToString + _
 		    ", Width: " + DesktopDisplay.DisplayAt(i).Width.ToString + _
@@ -1467,7 +1467,7 @@ End
 		    EndOfLine)
 		  Next
 		  
-		  Me.Text = String.FromArray(sScreens, EndOfLine)
+		  Me.Text = String.FromArray(sDisplays, EndOfLine)
 		  
 		End Sub
 	#tag EndEvent
@@ -1634,7 +1634,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events lstPosScreen
+#tag Events lstPosDisplay
 	#tag Event
 		Sub Opening()
 		  Me.RemoveAllRows
@@ -1647,26 +1647,26 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnSetPosOnScreen
+#tag Events btnSetPosOnDisplay
 	#tag Event
 		Sub Pressed()
-		  Dim iDisplay As Integer = Val(lstPosScreen.SelectedRowText)
+		  Dim iDisplay As Integer = Val(lstPosDisplay.SelectedRowText)
 		  
 		  Dim iPosX As Integer = Val(edtPosDisplayX.Text)
 		  Dim iPosY As Integer = Val(edtPosDisplayY.Text)
 		  
 		  
 		  Dim oWnd As New Window2
-		  oWnd.SetPosition_AtScreenPosition(iDisplay, iPosX, iPosY)
+		  oWnd.SetPosition_AtDisplayPosition(iDisplay, iPosX, iPosY)
 		  oWnd.ShowModal
 		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnSetPosOnScreenWinAPI
+#tag Events btnSetPosOnDisplayWinAPI
 	#tag Event
 		Sub Pressed()
-		  Dim iMonitor As Integer = Val(lstPosScreen.SelectedRowText)
+		  Dim iMonitor As Integer = Val(lstPosDisplay.SelectedRowText)
 		  
 		  Dim iPosX As Integer = Val(edtPosDisplayX.Text)
 		  Dim iPosY As Integer = Val(edtPosDisplayY.Text)

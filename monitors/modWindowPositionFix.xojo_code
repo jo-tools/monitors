@@ -529,6 +529,20 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub SetPosition_AtDisplayPosition(Extends poWindow As DesktopWindow, piDisplayIndex As Integer, piPosX As Integer, piPosY As Integer)
+		  If (piDisplayIndex < 0) Then piDisplayIndex = 0
+		  If (piDisplayIndex > (DesktopDisplay.DisplayCount-1)) Then piDisplayIndex = 0
+		  
+		  poWindow.Left = DesktopDisplay.DisplayAt(piDisplayIndex).Left + piPosX
+		  poWindow.Top = DesktopDisplay.DisplayAt(piDisplayIndex).Top + piPosY
+		  
+		  'This is buggy, too - so let's just see what happens when setting the position
+		  'poWindow.FitOnDisplay()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
 		Sub SetPosition_AtMonitorPosition(Extends poWindow As DesktopWindow, piMonitorIndex As Integer, piPosX As Integer, piPosY As Integer)
 		  #If TargetWindows Then
 		    Try
@@ -594,22 +608,8 @@ Protected Module modWindowPositionFix
 		    
 		    
 		  #Else
-		    poWindow.SetPosition_AtScreenPosition(piMonitorIndex, piPosX, piPosY)
+		    poWindow.SetPosition_AtDisplayPosition(piMonitorIndex, piPosX, piPosY)
 		  #EndIf
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Sub SetPosition_AtScreenPosition(Extends poWindow As DesktopWindow, piDisplayIndex As Integer, piPosX As Integer, piPosY As Integer)
-		  If (piDisplayIndex < 0) Then piDisplayIndex = 0
-		  If (piDisplayIndex > (DesktopDisplay.DisplayCount-1)) Then piDisplayIndex = 0
-		  
-		  poWindow.Left = DesktopDisplay.DisplayAt(piDisplayIndex).Left + piPosX
-		  poWindow.Top = DesktopDisplay.DisplayAt(piDisplayIndex).Top + piPosY
-		  
-		  'This is buggy, too - so let's just see what happens when setting the position
-		  'poWindow.FitOnDisplay()
-		  
 		End Sub
 	#tag EndMethod
 
@@ -780,7 +780,7 @@ Protected Module modWindowPositionFix
 		          'place it at the desired Position on the Monitor
 		          poWindow.SetPosition_AtMonitorPosition(iMonitorIndex, iPosX, iPosY)
 		        #Else
-		          //Xojo 2018r4 seems to use virtual coordinates on all Screens
+		          //Xojo 2018r4 seems to use virtual coordinates on all Displays
 		          'so let's just let Xojo set the position again
 		          poWindow.Left = poSetPositionRect.Left
 		          poWindow.Top = poSetPositionRect.Top
