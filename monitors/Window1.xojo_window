@@ -1801,16 +1801,16 @@ End
 	#tag Event
 		Sub Opening()
 		  Dim sScreens() As String
-		  For i As Integer = 0 To ScreenCount-1
-		    sScreens.Append("Screen(" + Str(i) + ") => " + _
-		    "Left: " + Str(Screen(i).Left) + _
-		    ", Top: " + Str(Screen(i).Top) + _
-		    ", Width: " + Str(Screen(i).Width) + _
-		    ", Height: " + Str(Screen(i).Height) + _
+		  For i As Integer = 0 To DesktopDisplay.DisplayCount-1
+		    sScreens.Add("Screen(" + Str(i) + ") => " + _
+		    "Left: " + Str(DesktopDisplay.DisplayAt(i).Left) + _
+		    ", Top: " + Str(DesktopDisplay.DisplayAt(i).Top) + _
+		    ", Width: " + Str(DesktopDisplay.DisplayAt(i).Width) + _
+		    ", Height: " + Str(DesktopDisplay.DisplayAt(i).Height) + _
 		    EndOfLine)
 		  Next
 		  
-		  Me.Text = Join(sScreens, EndOfLine)
+		  Me.Text = String.FromArray(sScreens, EndOfLine)
 		  
 		End Sub
 	#tag EndEvent
@@ -1820,8 +1820,8 @@ End
 		Sub Action()
 		  Dim iIsOnScreen As Integer = Self.IsOnScreen
 		  labIsOnScreen.Text = "IsOnScreen: " + Str(iIsOnScreen) + EndOfLine + _
-		  "Left: " + Str(Screen(iIsOnScreen).Left) + ", Top: " + Str(Screen(iIsOnScreen).Top) + EndOfLine + _
-		  "Dimension: " + Str(Screen(iIsOnScreen).Width) + "x" + Str(Screen(iIsOnScreen).Height) + EndOfLine + _
+		  "Left: " + Str(DesktopDisplay.DisplayAt(iIsOnScreen).Left) + ", Top: " + Str(DesktopDisplay.DisplayAt(iIsOnScreen).Top) + EndOfLine + _
+		  "Dimension: " + Str(DesktopDisplay.DisplayAt(iIsOnScreen).Width) + "x" + Str(DesktopDisplay.DisplayAt(iIsOnScreen).Height) + EndOfLine + _
 		  "ScaleFactor: " + Format(Self.ScaleFactor, "#0.0#")
 		  
 		  labWindowPosition.Text = "Window.Bounds: " + _
@@ -1853,8 +1853,8 @@ End
 		  Dim iPosX, iPosY As Integer
 		  
 		  Dim iScreen As Integer = Self.IsOnScreen 'that's just using Xojo Framework (for WindowsAPI, use self.IsOnMonitorIndex)
-		  iPosX = Self.Left - Screen(iScreen).Left
-		  iPosY = Self.Top - Screen(iScreen).Top
+		  iPosX = Self.Left - DesktopDisplay.DisplayAt(iScreen).Left
+		  iPosY = Self.Top - DesktopDisplay.DisplayAt(iScreen).Top
 		  labPosRelativeOnScreen.Text = "at relative Screen Pos: " + Str(iPosX) + "x, " + Str(iPosY) + "y"
 		  
 		  Self.IsAtRelativeMonitorPosition(iPosX, iPosY) 'that's using Windows API if possible
@@ -1981,7 +1981,7 @@ End
 	#tag Event
 		Sub Opening()
 		  Me.RemoveAllRows
-		  For i As Integer = 0 To ScreenCount-1
+		  For i As Integer = 0 To DesktopDisplay.DisplayCount-1
 		    Me.AddRow(Str(i))
 		  Next
 		  
@@ -2068,7 +2068,7 @@ End
 	#tag Event
 		Sub MouseUp(x As Integer, y As Integer)
 		  If (x >= 0) And (x < Me.Width) And (y > 0) And (y < Me.Height) Then
-		    ShowURL(constWebsiteUrl)
+		    System.GotoURL(constWebsiteUrl)
 		  End If
 		End Sub
 	#tag EndEvent
@@ -2103,7 +2103,7 @@ End
 	#tag Event
 		Sub MouseUp(x As Integer, y As Integer)
 		  If (x >= 0) And (x < Me.Width) And (y > 0) And (y < Me.Height) Then
-		    ShowURL(constWebsiteUrl)
+		    System.GotoURL(constWebsiteUrl)
 		  End If
 		End Sub
 	#tag EndEvent
@@ -2163,7 +2163,7 @@ End
 	#tag Event
 		Sub MouseUp(x As Integer, y As Integer)
 		  If (x >= 0) And (x < Me.Width) And (y > 0) And (y < Me.Height) Then
-		    ShowURL("mailto:xojo@jo-tools.ch")
+		    System.GotoURL("mailto:xojo@jo-tools.ch")
 		  End If
 		End Sub
 	#tag EndEvent
@@ -2173,13 +2173,11 @@ End
 		Sub Paint(g As Graphics, areas() As Rect)
 		  #Pragma unused areas
 		  
-		  g.ForeColor = &cFFFFFF
-		  #If (XojoVersion >= 2018.03) Then
-		    If IsDarkMode Then g.ForeColor = &cD0D0D0
-		  #EndIf
-		  g.FillRect(0, 0, g.Width, g.Height)
-		  g.ForeColor = &c909090
-		  g.DrawRect(0, 0, g.Width, g.Height)
+		  g.DrawingColor = &cFFFFFF
+		  If Color.IsDarkMode Then g.DrawingColor = &cD0D0D0
+		  g.FillRectangle(0, 0, g.Width, g.Height)
+		  g.DrawingColor = &c909090
+		  g.DrawRectangle(0, 0, g.Width, g.Height)
 		  g.DrawPicture(PayPal, 3, 2, 100, 26, 0, 0, PayPal.Width, PayPal.Height)
 		End Sub
 	#tag EndEvent
@@ -2197,7 +2195,7 @@ End
 	#tag Event
 		Sub MouseUp(x As Integer, y As Integer)
 		  If (x >= 0) And (x < Me.Width) And (y > 0) And (y < Me.Height) Then
-		    ShowURL("https://paypal.me/jotools")
+		    System.GotoURL("https://paypal.me/jotools")
 		  End If
 		End Sub
 	#tag EndEvent
@@ -2244,7 +2242,7 @@ End
 		    End If
 		    
 		  #Else
-		    MsgBox "Enter FullScreen is not implemented for this build target."
+		    MessageBox "Enter FullScreen is not implemented for this build target."
 		  #EndIf
 		End Sub
 	#tag EndEvent
