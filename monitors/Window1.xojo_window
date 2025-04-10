@@ -1,39 +1,41 @@
-#tag Window
-Begin Window Window1
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopWindow Window1
    Backdrop        =   0
-   CloseButton     =   True
-   Compatibility   =   ""
+   BackgroundColor =   &cFFFFFF00
    Composite       =   False
-   Frame           =   0
+   DefaultLocation =   0
    FullScreen      =   False
-   FullScreenButton=   False
-   HasBackColor    =   False
+   HasBackgroundColor=   False
+   HasCloseButton  =   True
+   HasFullScreenButton=   False
+   HasMaximizeButton=   True
+   HasMinimizeButton=   True
    Height          =   620
    ImplicitInstance=   True
-   LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   32000
-   MaximizeButton  =   True
-   MaxWidth        =   32000
+   MaximumHeight   =   32000
+   MaximumWidth    =   32000
    MenuBar         =   1670486015
    MenuBarVisible  =   True
-   MinHeight       =   620
-   MinimizeButton  =   True
-   MinWidth        =   540
-   Placement       =   0
+   MinimumHeight   =   620
+   MinimumWidth    =   540
    Resizeable      =   True
    Title           =   "Monitors"
+   Type            =   0
    Visible         =   True
    Width           =   540
-   Begin PushButton btnXojoCenterLeftTop
-      AutoDeactivate  =   True
+   Begin DesktopButton btnXojoCenterLeftTop
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Center Modal (using .Left, .Top)"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -45,27 +47,33 @@ Begin Window Window1
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   18
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   409
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin PushButton btnXojoCenterBounds
-      AutoDeactivate  =   True
+   Begin DesktopButton btnXojoCenterBounds
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Center Modal (using .Bounds)"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -77,38 +85,52 @@ Begin Window Window1
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   20
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   443
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin TextArea edtScreens
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFFFF00
+   Begin DesktopTextArea edtScreens
+      AcceptTabs      =   "False"
+      Alignment       =   "0"
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   True
+      AllowStyledText =   True
+      AllowTabs       =   False
+      AutoDeactivate  =   "True"
+      AutomaticallyCheckSpelling=   "True"
+      BackColor       =   "&cFFFFFF00"
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   True
+      Border          =   "True"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   True
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
       Height          =   67
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
       Left            =   20
-      LimitText       =   0
+      LimitText       =   "0"
       LineHeight      =   0.0
       LineSpacing     =   1.0
       LockBottom      =   False
@@ -117,28 +139,34 @@ Begin Window Window1
       LockRight       =   False
       LockTop         =   True
       Mask            =   ""
+      MaximumCharactersAllowed=   0
       Multiline       =   True
       ReadOnly        =   False
       Scope           =   2
-      ScrollbarHorizontal=   False
-      ScrollbarVertical=   True
-      Styled          =   True
+      ScrollbarHorizontal=   "False"
+      ScrollbarVertical=   "True"
+      Styled          =   "True"
       TabIndex        =   9
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   138
       Transparent     =   True
       Underline       =   False
-      UseFocusRing    =   True
+      UnicodeMode     =   0
+      UseFocusRing    =   "True"
+      ValidationMask  =   ""
       Visible         =   True
       Width           =   240
    End
    Begin Timer timRefresh
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   True
       Mode            =   2
@@ -146,12 +174,16 @@ Begin Window Window1
       Scope           =   2
       TabPanelIndex   =   0
    End
-   Begin Label labIsOnScreen
-      AutoDeactivate  =   True
+   Begin DesktopLabel labIsOnScreen
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   75
       HelpTag         =   ""
       Index           =   -2147483648
@@ -170,23 +202,29 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Untitled"
-      TextAlign       =   0
+      TextAlign       =   "0"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   282
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   250
    End
-   Begin Label labIsOnMonitor
-      AutoDeactivate  =   True
+   Begin DesktopLabel labIsOnMonitor
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   75
       HelpTag         =   ""
       Index           =   -2147483648
@@ -205,23 +243,29 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Untitled"
-      TextAlign       =   0
+      TextAlign       =   "0"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   282
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin Label labWindowRect
-      AutoDeactivate  =   True
+   Begin DesktopLabel labWindowRect
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   65
       HelpTag         =   ""
       Index           =   -2147483648
@@ -240,25 +284,31 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Untitled"
-      TextAlign       =   0
+      TextAlign       =   "0"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   212
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin PushButton btnFitOnMonitor
-      AutoDeactivate  =   True
+   Begin DesktopButton btnFitOnMonitor
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "FitOnMonitor"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -270,27 +320,33 @@ Begin Window Window1
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   23
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   477
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin PushButton btnCenterModal
-      AutoDeactivate  =   True
+   Begin DesktopButton btnCenterModal
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Center Modal"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -302,25 +358,31 @@ Begin Window Window1
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   21
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   443
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin Label labXojo
-      AutoDeactivate  =   True
+   Begin DesktopLabel labXojo
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   True
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -339,23 +401,29 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Using Xojo's API"
-      TextAlign       =   1
+      TextAlign       =   "2"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   115
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin Label labWindowsAPI
-      AutoDeactivate  =   True
+   Begin DesktopLabel labWindowsAPI
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   True
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -374,23 +442,29 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Using Windows API"
-      TextAlign       =   1
+      TextAlign       =   "2"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   115
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   238
    End
-   Begin PopupMenu lstAddX
-      AutoDeactivate  =   True
+   Begin DesktopPopupMenu lstAddX
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -398,31 +472,37 @@ Begin Window Window1
       InitialValue    =   ""
       Italic          =   False
       Left            =   268
-      ListIndex       =   0
+      ListIndex       =   "0"
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
+      SelectedRowIndex=   0
       TabIndex        =   26
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   520
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   60
    End
-   Begin PopupMenu lstAddY
-      AutoDeactivate  =   True
+   Begin DesktopPopupMenu lstAddY
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -430,33 +510,39 @@ Begin Window Window1
       InitialValue    =   ""
       Italic          =   False
       Left            =   340
-      ListIndex       =   0
+      ListIndex       =   "0"
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
+      SelectedRowIndex=   0
       TabIndex        =   27
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   520
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   60
    End
-   Begin PushButton btnSetPosRelativeWinAPI
-      AutoDeactivate  =   True
+   Begin DesktopButton btnSetPosRelativeWinAPI
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Pos"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -468,25 +554,31 @@ Begin Window Window1
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   28
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   520
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   61
    End
-   Begin Label labXY
-      AutoDeactivate  =   True
+   Begin DesktopLabel labXY
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -505,19 +597,24 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "relative to Window (+x,+y):"
-      TextAlign       =   2
+      TextAlign       =   "3"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   520
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   168
    End
-   Begin Separator sepInfo
-      AutoDeactivate  =   True
+   Begin DesktopSeparator sepInfo
+      Active          =   False
+      AllowAutoDeactivate=   True
+      AllowTabStop    =   True
+      AutoDeactivate  =   "True"
       Enabled         =   True
       Height          =   4
       HelpTag         =   ""
@@ -529,23 +626,32 @@ Begin Window Window1
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   False
+      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   17
       TabPanelIndex   =   0
-      TabStop         =   True
+      Tooltip         =   ""
       Top             =   392
       Transparent     =   False
       Visible         =   True
       Width           =   540
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
-   Begin PushButton btnFitOnScreen
-      AutoDeactivate  =   True
+   Begin DesktopButton btnFitOnScreen
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "FitOnScreen"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -557,27 +663,33 @@ Begin Window Window1
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   22
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   477
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin PushButton btnSetPosRelative
-      AutoDeactivate  =   True
+   Begin DesktopButton btnSetPosRelative
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Pos"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -589,25 +701,31 @@ Begin Window Window1
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   24
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   520
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   61
    End
-   Begin Label labWindowPosition
-      AutoDeactivate  =   True
+   Begin DesktopLabel labWindowPosition
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   65
       HelpTag         =   ""
       Index           =   -2147483648
@@ -626,36 +744,50 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Untitled"
-      TextAlign       =   0
+      TextAlign       =   "0"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   212
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin TextArea edtMonitors
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFFFF00
+   Begin DesktopTextArea edtMonitors
+      AcceptTabs      =   "False"
+      Alignment       =   "0"
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   True
+      AllowStyledText =   True
+      AllowTabs       =   False
+      AutoDeactivate  =   "True"
+      AutomaticallyCheckSpelling=   "True"
+      BackColor       =   "&cFFFFFF00"
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   True
+      Border          =   "True"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   True
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
       Height          =   67
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
       Left            =   280
-      LimitText       =   0
+      LimitText       =   "0"
       LineHeight      =   0.0
       LineSpacing     =   1.0
       LockBottom      =   False
@@ -664,33 +796,42 @@ Begin Window Window1
       LockRight       =   True
       LockTop         =   True
       Mask            =   ""
+      MaximumCharactersAllowed=   0
       Multiline       =   True
       ReadOnly        =   False
       Scope           =   2
-      ScrollbarHorizontal=   False
-      ScrollbarVertical=   True
-      Styled          =   True
+      ScrollbarHorizontal=   "False"
+      ScrollbarVertical=   "True"
+      Styled          =   "True"
       TabIndex        =   10
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   138
       Transparent     =   True
       Underline       =   False
-      UseFocusRing    =   True
+      UnicodeMode     =   0
+      UseFocusRing    =   "True"
+      ValidationMask  =   ""
       Visible         =   True
       Width           =   240
    End
-   Begin Label labSetPosOnScreen
-      AutoDeactivate  =   True
+   Begin DesktopLabel labSetPosOnScreen
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -709,23 +850,29 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "on Screen:"
-      TextAlign       =   2
+      TextAlign       =   "3"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   550
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   70
    End
-   Begin PopupMenu lstPosScreen
-      AutoDeactivate  =   True
+   Begin DesktopPopupMenu lstPosScreen
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -733,31 +880,37 @@ Begin Window Window1
       InitialValue    =   ""
       Italic          =   False
       Left            =   166
-      ListIndex       =   0
+      ListIndex       =   "0"
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
+      SelectedRowIndex=   0
       TabIndex        =   31
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   550
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   60
    End
-   Begin Label labSetPosOnScreenAtPos
-      AutoDeactivate  =   True
+   Begin DesktopLabel labSetPosOnScreenAtPos
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -776,43 +929,56 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "at Pos (x,y):"
-      TextAlign       =   2
+      TextAlign       =   "3"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   550
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   70
    End
-   Begin TextField edtPosScreenX
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
+   Begin DesktopTextField edtPosScreenX
+      AcceptTabs      =   "False"
+      Alignment       =   "0"
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      AutoDeactivate  =   "True"
+      AutomaticallyCheckSpelling=   "False"
+      BackColor       =   "&cFFFFFF00"
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   True
+      Border          =   "True"
       CueText         =   ""
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   True
       Height          =   22
       HelpTag         =   ""
+      Hint            =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
       Left            =   320
-      LimitText       =   0
+      LimitText       =   "0"
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
       Mask            =   ""
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
@@ -820,42 +986,56 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "100"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   550
       Transparent     =   False
       Underline       =   False
-      UseFocusRing    =   True
+      UseFocusRing    =   "True"
+      ValidationMask  =   ""
       Visible         =   True
       Width           =   50
    End
-   Begin TextField edtPosScreenY
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
+   Begin DesktopTextField edtPosScreenY
+      AcceptTabs      =   "False"
+      Alignment       =   "0"
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      AutoDeactivate  =   "True"
+      AutomaticallyCheckSpelling=   "False"
+      BackColor       =   "&cFFFFFF00"
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   True
+      Border          =   "True"
       CueText         =   ""
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   True
       Height          =   22
       HelpTag         =   ""
+      Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
       Left            =   382
-      LimitText       =   0
+      LimitText       =   "0"
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
       Mask            =   ""
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
@@ -863,25 +1043,32 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "100"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   550
       Transparent     =   False
       Underline       =   False
-      UseFocusRing    =   True
+      UseFocusRing    =   "True"
+      ValidationMask  =   ""
       Visible         =   True
       Width           =   50
    End
-   Begin PushButton btnSetPosOnScreen
-      AutoDeactivate  =   True
+   Begin DesktopButton btnSetPosOnScreen
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Pos"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -893,27 +1080,33 @@ Begin Window Window1
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   29
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   550
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   61
    End
-   Begin PushButton btnSetPosOnScreenWinAPI
-      AutoDeactivate  =   True
+   Begin DesktopButton btnSetPosOnScreenWinAPI
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Pos"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -925,25 +1118,31 @@ Begin Window Window1
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   35
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   550
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   61
    End
-   Begin Label labPosRelativeOnMonitor
-      AutoDeactivate  =   True
+   Begin DesktopLabel labPosRelativeOnMonitor
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -962,23 +1161,29 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Untitled"
-      TextAlign       =   0
+      TextAlign       =   "0"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   361
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin Label labPosAbsoluteXY
-      AutoDeactivate  =   True
+   Begin DesktopLabel labPosAbsoluteXY
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -997,25 +1202,31 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "at Xojo Window.Left/Top:"
-      TextAlign       =   2
+      TextAlign       =   "3"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   580
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   168
    End
-   Begin PushButton btnSetPosAbsoluteWinAPI
-      AutoDeactivate  =   True
+   Begin DesktopButton btnSetPosAbsoluteWinAPI
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Pos"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -1027,27 +1238,33 @@ Begin Window Window1
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   40
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   580
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   61
    End
-   Begin PushButton btnSetPosAbsolute
-      AutoDeactivate  =   True
+   Begin DesktopButton btnSetPosAbsolute
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Pos"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -1059,44 +1276,57 @@ Begin Window Window1
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   36
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   580
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   61
    End
-   Begin TextField edtPosAbsoluteX
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
+   Begin DesktopTextField edtPosAbsoluteX
+      AcceptTabs      =   "False"
+      Alignment       =   "0"
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      AutoDeactivate  =   "True"
+      AutomaticallyCheckSpelling=   "False"
+      BackColor       =   "&cFFFFFF00"
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   True
+      Border          =   "True"
       CueText         =   ""
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   True
       Height          =   22
       HelpTag         =   ""
+      Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
       Left            =   268
-      LimitText       =   0
+      LimitText       =   "0"
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
       Mask            =   ""
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
@@ -1104,42 +1334,56 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "0"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   580
       Transparent     =   False
       Underline       =   False
-      UseFocusRing    =   True
+      UseFocusRing    =   "True"
+      ValidationMask  =   ""
       Visible         =   True
       Width           =   60
    End
-   Begin TextField edtPosAbsoluteY
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
+   Begin DesktopTextField edtPosAbsoluteY
+      AcceptTabs      =   "False"
+      Alignment       =   "0"
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      AutoDeactivate  =   "True"
+      AutomaticallyCheckSpelling=   "False"
+      BackColor       =   "&cFFFFFF00"
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   True
+      Border          =   "True"
       CueText         =   ""
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   True
       Height          =   22
       HelpTag         =   ""
+      Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
       Left            =   340
-      LimitText       =   0
+      LimitText       =   "0"
       LockBottom      =   True
       LockedInPosition=   True
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
       Mask            =   ""
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
@@ -1147,19 +1391,25 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "0"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   580
       Transparent     =   False
       Underline       =   False
-      UseFocusRing    =   True
+      UseFocusRing    =   "True"
+      ValidationMask  =   ""
       Visible         =   True
       Width           =   60
    End
-   Begin Separator sepTop
-      AutoDeactivate  =   True
+   Begin DesktopSeparator sepTop
+      Active          =   False
+      AllowAutoDeactivate=   True
+      AllowTabStop    =   True
+      AutoDeactivate  =   "True"
       Enabled         =   True
       Height          =   3
       HelpTag         =   ""
@@ -1171,21 +1421,30 @@ Begin Window Window1
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
+      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   6
       TabPanelIndex   =   0
-      TabStop         =   True
+      Tooltip         =   ""
       Top             =   100
       Transparent     =   True
       Visible         =   True
       Width           =   540
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
-   Begin Label labPosRelativeOnScreen
-      AutoDeactivate  =   True
+   Begin DesktopLabel labPosRelativeOnScreen
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -1204,25 +1463,31 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Untitled"
-      TextAlign       =   0
+      TextAlign       =   "0"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   361
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   240
    End
-   Begin Canvas cnvAppIcon
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
+   Begin DesktopCanvas cnvAppIcon
+      AcceptFocus     =   "False"
+      AcceptTabs      =   "False"
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowFocusRing  =   True
+      AllowTabs       =   False
+      AutoDeactivate  =   "True"
       Backdrop        =   0
-      DoubleBuffer    =   False
+      DoubleBuffer    =   "False"
       Enabled         =   True
-      EraseBackground =   True
+      EraseBackground =   "True"
       Height          =   64
       HelpTag         =   "#constWebsiteUrl"
       Index           =   -2147483648
@@ -1237,18 +1502,23 @@ Begin Window Window1
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   20
       Transparent     =   True
-      UseFocusRing    =   True
+      UseFocusRing    =   "True"
       Visible         =   True
       Width           =   64
    End
-   Begin Label labAppName
-      AutoDeactivate  =   True
+   Begin DesktopLabel labAppName
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   True
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   30
       HelpTag         =   "#constWebsiteUrl"
       Index           =   -2147483648
@@ -1267,23 +1537,29 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "AppName"
-      TextAlign       =   1
+      TextAlign       =   "2"
+      TextAlignment   =   0
       TextColor       =   &c0072D800
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   20
       Transparent     =   True
       Underline       =   True
       Visible         =   True
       Width           =   160
    End
-   Begin Label labThanks
-      AutoDeactivate  =   True
+   Begin DesktopLabel labThanks
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   30
       HelpTag         =   ""
       Index           =   -2147483648
@@ -1302,23 +1578,29 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Would you like to say 'Thank you'?"
-      TextAlign       =   2
+      TextAlign       =   "3"
+      TextAlignment   =   0
       TextColor       =   &c66666600
       TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   21
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   209
    End
-   Begin Label labAppVersion
-      AutoDeactivate  =   True
+   Begin DesktopLabel labAppVersion
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   30
       HelpTag         =   ""
       Index           =   -2147483648
@@ -1337,23 +1619,29 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "AppVersion"
-      TextAlign       =   1
+      TextAlign       =   "2"
+      TextAlignment   =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   54
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   160
    End
-   Begin Label labContact
-      AutoDeactivate  =   True
+   Begin DesktopLabel labContact
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   30
       HelpTag         =   "xojo@jo-tools.ch"
       Index           =   -2147483648
@@ -1372,25 +1660,31 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Contact"
-      TextAlign       =   1
+      TextAlign       =   "2"
+      TextAlignment   =   0
       TextColor       =   &c0072CE00
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   55
       Transparent     =   True
       Underline       =   True
       Visible         =   True
       Width           =   70
    End
-   Begin Canvas cnvPayPal
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
+   Begin DesktopCanvas cnvPayPal
+      AcceptFocus     =   "False"
+      AcceptTabs      =   "False"
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowFocusRing  =   True
+      AllowTabs       =   False
+      AutoDeactivate  =   "True"
       Backdrop        =   0
-      DoubleBuffer    =   False
+      DoubleBuffer    =   "False"
       Enabled         =   True
-      EraseBackground =   True
+      EraseBackground =   "True"
       Height          =   30
       HelpTag         =   "https://paypal.me/jotools"
       Index           =   -2147483648
@@ -1405,20 +1699,25 @@ Begin Window Window1
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   55
       Transparent     =   True
-      UseFocusRing    =   True
+      UseFocusRing    =   "True"
       Visible         =   True
       Width           =   106
    End
-   Begin PushButton btnFullScreen
-      AutoDeactivate  =   True
+   Begin DesktopButton btnFullScreen
+      AllowAutoDeactivate=   True
+      AutoDeactivate  =   "True"
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Enter FullScreen"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -1430,13 +1729,15 @@ Begin Window Window1
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   19
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      TextSize        =   "0.0"
+      TextUnit        =   "0"
+      Tooltip         =   ""
       Top             =   409
       Transparent     =   True
       Underline       =   False
@@ -1444,11 +1745,11 @@ Begin Window Window1
       Width           =   240
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  Self.Title = "Monitors"
 		End Sub
 	#tag EndEvent
@@ -1470,7 +1771,7 @@ End
 
 #tag Events btnXojoCenterLeftTop
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Dim oWnd As New Window2
 		  oWnd.Left = Self.Left + ((Self.Width - oWnd.Width)/2)
 		  oWnd.Top = Self.Top + ((Self.Height - oWnd.Height)/2)
@@ -1481,12 +1782,12 @@ End
 #tag EndEvents
 #tag Events btnXojoCenterBounds
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Dim oWnd As New Window2
 		  
-		  Dim wndParentBounds As REALbasic.Rect = Self.Bounds
-		  Dim wndBounds As REALbasic.Rect = oWnd.Bounds
-		  Dim setBounds As New REALbasic.Rect(wndBounds.Left, wndBounds.Top, wndBounds.Width, wndBounds.Height)
+		  Dim wndParentBounds As Xojo.Rect = Self.Bounds
+		  Dim wndBounds As Xojo.Rect = oWnd.Bounds
+		  Dim setBounds As New Xojo.Rect(wndBounds.Left, wndBounds.Top, wndBounds.Width, wndBounds.Height)
 		  setBounds.Left = wndParentBounds.Left + ((wndParentBounds.Width - setBounds.Width)/2)
 		  setBounds.Top = wndParentBounds.Top + ((wndParentBounds.Height - setBounds.Height)/2)
 		  oWnd.Bounds = setBounds
@@ -1498,7 +1799,7 @@ End
 #tag EndEvents
 #tag Events edtScreens
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  Dim sScreens() As String
 		  For i As Integer = 0 To ScreenCount-1
 		    sScreens.Append("Screen(" + Str(i) + ") => " + _
@@ -1532,7 +1833,7 @@ End
 		  
 		  #If TargetWindows Then
 		    Dim hMon As Integer = Self.IsOnMonitorHandle
-		    Dim oRect As REALbasic.Rect = GetMonitorRect(hMon, False)
+		    Dim oRect As Xojo.Rect = GetMonitorRect(hMon, False)
 		    Dim dScale As Double = Round((Self.GetWindowRect.Height / Self.Bounds.Height)*100)/100
 		    
 		    labIsOnMonitor.Text = "IsOnMonitor: " + Str(hMon) + " (MonitorIndex: " + Str(Self.IsOnMonitorIndex) + ")" + EndOfLine + _
@@ -1565,14 +1866,14 @@ End
 #tag EndEvents
 #tag Events btnFitOnMonitor
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Self.FitOnMonitor
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events btnCenterModal
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Dim oWnd As New Window2
 		  oWnd.SetPosition_CenterToParent(Self)
 		  oWnd.ShowModal
@@ -1582,35 +1883,35 @@ End
 #tag EndEvents
 #tag Events lstAddX
 	#tag Event
-		Sub Open()
-		  Me.DeleteAllRows
+		Sub Opening()
+		  Me.RemoveAllRows
 		  For i As Integer = -500 To 500 Step 50
 		    Me.AddRow Str(i)
 		  Next
-		  Me.ListIndex = 12
+		  Me.SelectedRowIndex = 12
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events lstAddY
 	#tag Event
-		Sub Open()
-		  Me.DeleteAllRows
+		Sub Opening()
+		  Me.RemoveAllRows
 		  For i As Integer = -500 To 500 Step 50
 		    Me.AddRow Str(i)
 		  Next
-		  Me.ListIndex = 12
+		  Me.SelectedRowIndex = 12
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events btnSetPosRelativeWinAPI
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Dim oWnd As New Window2
 		  
-		  Dim setPositionRect As New REALbasic.Rect
+		  Dim setPositionRect As New Xojo.Rect
 		  
-		  setPositionRect.Left = Self.Left + Val(lstAddX.Text)
-		  setPositionRect.Top = Self.Top + Val(lstAddY.Text)
+		  setPositionRect.Left = Self.Left + Val(lstAddX.SelectedRowText)
+		  setPositionRect.Top = Self.Top + Val(lstAddY.SelectedRowText)
 		  setPositionRect.Width = oWnd.Width
 		  setPositionRect.Height = oWnd.Height
 		  
@@ -1623,18 +1924,18 @@ End
 #tag EndEvents
 #tag Events btnFitOnScreen
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Self.FitOnScreen
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events btnSetPosRelative
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Dim oWnd As New Window2
 		  
-		  oWnd.Left = Self.Left + Val(lstAddX.Text)
-		  oWnd.Top = Self.Top + Val(lstAddY.Text)
+		  oWnd.Left = Self.Left + Val(lstAddX.SelectedRowText)
+		  oWnd.Top = Self.Top + Val(lstAddY.SelectedRowText)
 		  
 		  'This is buggy, too - so let's just see what happens when setting the position
 		  'oWnd.FitOnScreen()
@@ -1646,12 +1947,12 @@ End
 #tag EndEvents
 #tag Events edtMonitors
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  #If TargetWindows Then
 		    Dim sMonitors() As String
 		    For i As Integer = 0 To MonitorCount-1
 		      Dim hMon As Integer = MonitorHandle(i)
-		      Dim oRect As REALbasic.Rect = GetMonitorRect(hMon, False)
+		      Dim oRect As Xojo.Rect = GetMonitorRect(hMon, False)
 		      
 		      If System.IsFunctionAvailable("GetDpiForMonitor", "Shcore") Then
 		        Soft Declare Function GetDpiForMonitor Lib "Shcore" (hMonitor As Integer, dpiType As Integer, ByRef dpiX As UInt32, ByRef dpiY As UInt32) As Integer
@@ -1678,21 +1979,21 @@ End
 #tag EndEvents
 #tag Events lstPosScreen
 	#tag Event
-		Sub Open()
-		  Me.DeleteAllRows
+		Sub Opening()
+		  Me.RemoveAllRows
 		  For i As Integer = 0 To ScreenCount-1
 		    Me.AddRow(Str(i))
 		  Next
 		  
-		  Me.ListIndex = 0
+		  Me.SelectedRowIndex = 0
 		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events btnSetPosOnScreen
 	#tag Event
-		Sub Action()
-		  Dim iScreen As Integer = Val(lstPosScreen.Text)
+		Sub Pressed()
+		  Dim iScreen As Integer = Val(lstPosScreen.SelectedRowText)
 		  
 		  Dim iPosX As Integer = Val(edtPosScreenX.Text)
 		  Dim iPosY As Integer = Val(edtPosScreenY.Text)
@@ -1707,8 +2008,8 @@ End
 #tag EndEvents
 #tag Events btnSetPosOnScreenWinAPI
 	#tag Event
-		Sub Action()
-		  Dim iMonitor As Integer = Val(lstPosScreen.Text)
+		Sub Pressed()
+		  Dim iMonitor As Integer = Val(lstPosScreen.SelectedRowText)
 		  
 		  Dim iPosX As Integer = Val(edtPosScreenX.Text)
 		  Dim iPosY As Integer = Val(edtPosScreenY.Text)
@@ -1723,10 +2024,10 @@ End
 #tag EndEvents
 #tag Events btnSetPosAbsoluteWinAPI
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Dim oWnd As New Window2
 		  
-		  Dim setPositionRect As New REALbasic.Rect
+		  Dim setPositionRect As New Xojo.Rect
 		  
 		  setPositionRect.Left = Val(edtPosAbsoluteX.Text)
 		  setPositionRect.Top = Val(edtPosAbsoluteY.Text)
@@ -1742,7 +2043,7 @@ End
 #tag EndEvents
 #tag Events btnSetPosAbsolute
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Dim oWnd As New Window2
 		  
 		  oWnd.Left = Val(edtPosAbsoluteX.Text)
@@ -1758,21 +2059,21 @@ End
 #tag EndEvents
 #tag Events cnvAppIcon
 	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		Sub Paint(g As Graphics, areas() As Rect)
 		  #Pragma unused areas
 		  
 		  g.DrawPicture(AppIcon_64, 0, 0)
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub MouseUp(X As Integer, Y As Integer)
+		Sub MouseUp(x As Integer, y As Integer)
 		  If (x >= 0) And (x < Me.Width) And (y > 0) And (y < Me.Height) Then
 		    ShowURL(constWebsiteUrl)
 		  End If
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  #Pragma unused X
 		  #Pragma unused Y
 		  
@@ -1793,21 +2094,21 @@ End
 #tag EndEvents
 #tag Events labAppName
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  Me.Text = constAppName
-		  Me.TextSize = 18
+		  Me.FontSize = 18
 		  Me.Bold = True
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub MouseUp(X As Integer, Y As Integer)
+		Sub MouseUp(x As Integer, y As Integer)
 		  If (x >= 0) And (x < Me.Width) And (y > 0) And (y < Me.Height) Then
 		    ShowURL(constWebsiteUrl)
 		  End If
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  #Pragma unused X
 		  #Pragma unused Y
 		  
@@ -1828,13 +2129,14 @@ End
 #tag EndEvents
 #tag Events labAppVersion
 	#tag Event
-		Sub Open()
-		  If (App.ShortVersion <> "") Then
-		    Me.Text = App.ShortVersion
+		Sub Opening()
+		  If (App.Version <> "") Then
+		    Me.Text = App.Version
 		    Return
 		  End If
 		  
-		  Me.Text = Str(App.MajorVersion) + "." + Str(App.MinorVersion) + "." + Str(App.BugVersion)
+		  Me.Text = App.MajorVersion.ToString + "." + App.MinorVersion.ToString + "." + App.BugVersion.ToString
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1851,7 +2153,7 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  #Pragma unused X
 		  #Pragma unused Y
 		  
@@ -1859,7 +2161,7 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub MouseUp(X As Integer, Y As Integer)
+		Sub MouseUp(x As Integer, y As Integer)
 		  If (x >= 0) And (x < Me.Width) And (y > 0) And (y < Me.Height) Then
 		    ShowURL("mailto:xojo@jo-tools.ch")
 		  End If
@@ -1868,7 +2170,7 @@ End
 #tag EndEvents
 #tag Events cnvPayPal
 	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		Sub Paint(g As Graphics, areas() As Rect)
 		  #Pragma unused areas
 		  
 		  g.ForeColor = &cFFFFFF
@@ -1893,14 +2195,14 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub MouseUp(X As Integer, Y As Integer)
+		Sub MouseUp(x As Integer, y As Integer)
 		  If (x >= 0) And (x < Me.Width) And (y > 0) And (y < Me.Height) Then
 		    ShowURL("https://paypal.me/jotools")
 		  End If
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  #Pragma unused X
 		  #Pragma unused Y
 		  
@@ -1910,7 +2212,7 @@ End
 #tag EndEvents
 #tag Events btnFullScreen
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  #If TargetWindows Then
 		    If (edictFullScreen = Nil) Then edictFullScreen = New Dictionary
 		    
@@ -1949,74 +2251,43 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="Name"
-		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Interfaces"
-		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Super"
-		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Width"
-		Visible=true
-		Group="Size"
-		InitialValue="540"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Height"
-		Visible=true
-		Group="Size"
-		InitialValue="350"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinWidth"
+		Name="MinimumWidth"
 		Visible=true
 		Group="Size"
 		InitialValue="64"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MinHeight"
+		Name="MinimumHeight"
 		Visible=true
 		Group="Size"
 		InitialValue="64"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MaxWidth"
+		Name="MaximumWidth"
 		Visible=true
 		Group="Size"
 		InitialValue="32000"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MaxHeight"
+		Name="MaximumHeight"
 		Visible=true
 		Group="Size"
 		InitialValue="32000"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Frame"
+		Name="Type"
 		Visible=true
 		Group="Frame"
 		InitialValue="0"
-		Type="Integer"
+		Type="Types"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Document"
@@ -2028,83 +2299,47 @@ End
 			"6 - Rounded Window"
 			"7 - Global Floating Window"
 			"8 - Sheet Window"
-			"9 - Metal Window"
-			"11 - Modeless Dialog"
+			"9 - Modeless Dialog"
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Title"
-		Visible=true
-		Group="Frame"
-		InitialValue="Untitled"
-		Type="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="CloseButton"
+		Name="HasCloseButton"
 		Visible=true
 		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Resizeable"
+		Name="HasMaximizeButton"
 		Visible=true
 		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MaximizeButton"
+		Name="HasMinimizeButton"
 		Visible=true
 		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MinimizeButton"
-		Visible=true
-		Group="Frame"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="FullScreenButton"
+		Name="HasFullScreenButton"
 		Visible=true
 		Group="Frame"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Composite"
-		Group="OS X (Carbon)"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MacProcID"
-		Group="OS X (Carbon)"
-		InitialValue="0"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="ImplicitInstance"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Placement"
+		Name="DefaultLocation"
 		Visible=true
 		Group="Behavior"
 		InitialValue="0"
-		Type="Integer"
+		Type="Locations"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Default"
@@ -2115,54 +2350,132 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Name"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Interfaces"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Super"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Width"
+		Visible=true
+		Group="Size"
+		InitialValue="540"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Height"
+		Visible=true
+		Group="Size"
+		InitialValue="350"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Title"
+		Visible=true
+		Group="Frame"
+		InitialValue="Untitled"
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Resizeable"
+		Visible=true
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Composite"
+		Visible=false
+		Group="OS X (Carbon)"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MacProcID"
+		Visible=false
+		Group="OS X (Carbon)"
+		InitialValue="0"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ImplicitInstance"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Visible"
 		Visible=true
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="LiveResize"
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="FullScreen"
+		Visible=false
 		Group="Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Background"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="BackColor"
-		Visible=true
-		Group="Background"
-		InitialValue="&hFFFFFF"
-		Type="Color"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Background"
+		InitialValue=""
 		Type="Picture"
-		EditorType="Picture"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="MenuBar"
 		Visible=true
 		Group="Menus"
-		Type="MenuBar"
-		EditorType="MenuBar"
+		InitialValue=""
+		Type="DesktopMenuBar"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="MenuBarVisible"
@@ -2170,6 +2483,6 @@ End
 		Group="Deprecated"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

@@ -2,19 +2,19 @@
 Protected Module modWindowPositionFix
 	#tag CompatibilityFlags = ( TargetDesktop and ( Target32Bit or Target64Bit ) )
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Sub FitOnMonitor(Extends poWindow As Window, hMon As Integer = 0)
+		Sub FitOnMonitor(Extends poWindow As DesktopWindow, hMon As Integer = 0)
 		  #If TargetWindows Then
 		    Try
 		      
-		      Declare Function MoveWindow Lib "User32" (hWnd As Integer, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
+		      Declare Function MoveWindow Lib "User32" (hWnd As Ptr, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
 		      
 		      Dim hMonOrig As Integer = poWindow.IsOnMonitorHandle
 		      If (hMon = 0) Then hMon = hMonOrig
 		      
 		      Dim bMonitorWorkArea As Boolean = (Not poWindow.FullScreen)
-		      Dim rectMonitor As REALbasic.Rect = GetMonitorRect(hmon, bMonitorWorkArea)
-		      Dim rectWindowOrig As REALbasic.Rect = poWindow.GetWindowRect
-		      Dim rectWindow As REALbasic.Rect = poWindow.GetWindowRect
+		      Dim rectMonitor As Xojo.Rect = GetMonitorRect(hmon, bMonitorWorkArea)
+		      Dim rectWindowOrig As Xojo.Rect = poWindow.GetWindowRect
+		      Dim rectWindow As Xojo.Rect = poWindow.GetWindowRect
 		      
 		      Dim iWidth As Integer = poWindow.Width
 		      Dim iHeight As Integer = poWindow.Height
@@ -30,10 +30,10 @@ Protected Module modWindowPositionFix
 		      End If
 		      
 		      'check min/max Width/Height
-		      If (poWindow.MinWidth > 0) And (poWindow.Width < poWindow.MinWidth) Then poWindow.Width = poWindow.MinWidth
-		      If (poWindow.MinHeight > 0) And (poWindow.Height < poWindow.MinHeight) Then poWindow.Height = poWindow.MinHeight
-		      If (poWindow.MaxWidth > 0) And (poWindow.Width > poWindow.MaxWidth) Then poWindow.Width = poWindow.MaxWidth
-		      If (poWindow.MaxHeight > 0) And (poWindow.Height > poWindow.MaxHeight) Then poWindow.Height = poWindow.MaxHeight
+		      If (poWindow.MinimumWidth > 0) And (poWindow.Width < poWindow.MinimumWidth) Then poWindow.Width = poWindow.MinimumWidth
+		      If (poWindow.MinimumHeight > 0) And (poWindow.Height < poWindow.MinimumHeight) Then poWindow.Height = poWindow.MinimumHeight
+		      If (poWindow.MaximumWidth > 0) And (poWindow.Width > poWindow.MaximumWidth) Then poWindow.Width = poWindow.MaximumWidth
+		      If (poWindow.MaximumHeight > 0) And (poWindow.Height > poWindow.MaximumHeight) Then poWindow.Height = poWindow.MaximumHeight
 		      
 		      'Width/Height must have some reasonable value and can't be 0
 		      If (poWindow.Width <= 0) Then poWindow.Width = 640
@@ -90,7 +90,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Sub FitOnMonitorIndex(Extends poWindow As Window, piMonitorIndex As Integer = -1)
+		Sub FitOnMonitorIndex(Extends poWindow As DesktopWindow, piMonitorIndex As Integer = -1)
 		  #If TargetWindows Then
 		    Dim hMon As Integer = 0
 		    If (piMonitorIndex >= 0) Then
@@ -105,7 +105,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Sub FitOnScreen(Extends poWindow As Window, piScreen As Integer = -1)
+		Sub FitOnScreen(Extends poWindow As DesktopWindow, piScreen As Integer = -1)
 		  'Adjust Position of Window so that it fits entirely on Screen
 		  
 		  Try
@@ -117,18 +117,18 @@ Protected Module modWindowPositionFix
 		    Dim iScreenAvailableLeft As Integer = oScreen.AvailableLeft
 		    
 		    'check min/max Width/Height
-		    If (poWindow.MinWidth > 0) And (poWindow.Width < poWindow.MinWidth) Then poWindow.Width = poWindow.MinWidth
-		    If (poWindow.MinHeight > 0) And (poWindow.Height < poWindow.MinHeight) Then poWindow.Height = poWindow.MinHeight
-		    If (poWindow.MaxWidth > 0) And (poWindow.Width > poWindow.MaxWidth) Then poWindow.Width = poWindow.MaxWidth
-		    If (poWindow.MaxHeight > 0) And (poWindow.Height > poWindow.MaxHeight) Then poWindow.Height = poWindow.MaxHeight
+		    If (poWindow.MinimumWidth > 0) And (poWindow.Width < poWindow.MinimumWidth) Then poWindow.Width = poWindow.MinimumWidth
+		    If (poWindow.MinimumHeight > 0) And (poWindow.Height < poWindow.MinimumHeight) Then poWindow.Height = poWindow.MinimumHeight
+		    If (poWindow.MaximumWidth > 0) And (poWindow.Width > poWindow.MaximumWidth) Then poWindow.Width = poWindow.MaximumWidth
+		    If (poWindow.MaximumHeight > 0) And (poWindow.Height > poWindow.MaximumHeight) Then poWindow.Height = poWindow.MaximumHeight
 		    
 		    'Width/Height must have some reasonable value and can't be 0
 		    If (poWindow.Width <= 0) Then poWindow.Width = 640
 		    If (poWindow.Height <= 0) Then poWindow.Height = 480
 		    
 		    'use Bounds (respects window decoration, toolbar)
-		    Dim currentWindowBounds As REALbasic.Rect = poWindow.Bounds
-		    Dim setWindowBounds As New REALbasic.Rect(currentWindowBounds.Left, currentWindowBounds.Top, currentWindowBounds.Width, currentWindowBounds.Height)
+		    Dim currentWindowBounds As Xojo.Rect = poWindow.Bounds
+		    Dim setWindowBounds As New Xojo.Rect(currentWindowBounds.Left, currentWindowBounds.Top, currentWindowBounds.Width, currentWindowBounds.Height)
 		    
 		    'Window size needs to fit on Screen
 		    If (setWindowBounds.Height > oScreen.AvailableHeight) Then setWindowBounds.Height = oScreen.AvailableHeight
@@ -153,7 +153,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Function GetMonitorRect(hMon As Integer, pbWork As Boolean) As REALbasic.Rect
+		Function GetMonitorRect(hMon As Integer, pbWork As Boolean) As Xojo.Rect
 		  #If TargetWindows Then
 		    Declare Function GetMonitorInfoW Lib "User32" (hMonitor As Integer, ByRef lpMInfo As LPMONITORINFO) As Boolean
 		    Dim MyMonInfo As LPMONITORINFO
@@ -167,7 +167,7 @@ Protected Module modWindowPositionFix
 		      sRect = MyMonInfo.rcMonitor
 		    End If
 		    
-		    Dim oRect As New REALbasic.Rect
+		    Dim oRect As New Xojo.Rect
 		    oRect.Left = sRect.Left
 		    oRect.Top = sRect.Top
 		    oRect.Width = sRect.Right - sRect.Left
@@ -183,14 +183,14 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Function GetWindowRect(Extends poWindow As Window) As REALbasic.Rect
+		Function GetWindowRect(Extends poWindow As DesktopWindow) As Xojo.Rect
 		  #If TargetWindows Then
-		    Declare Function GetWindowRect Lib "User32" (hWnd As Integer, ByRef lpRect As LPRECT) As Boolean
+		    Declare Function GetWindowRect Lib "User32" (hWnd As Ptr, ByRef lpRect As LPRECT) As Boolean
 		    
 		    Dim wndlpRect As LPRECT
 		    Call GetWindowRect(poWindow.Handle, wndlpRect)
 		    
-		    Dim oRect As New REALbasic.Rect
+		    Dim oRect As New Xojo.Rect
 		    oRect.Left = wndlpRect.Left
 		    oRect.Top = wndlpRect.Top
 		    oRect.Width = wndlpRect.Right - oRect.Left
@@ -204,7 +204,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Sub IsAtRelativeMonitorPosition(Extends poWindow As Window, ByRef piPosX As Integer, ByRef piPosY As Integer)
+		Sub IsAtRelativeMonitorPosition(Extends poWindow As DesktopWindow, ByRef piPosX As Integer, ByRef piPosY As Integer)
 		  #If TargetWindows Then
 		    If (ScreenCount = 1) Then
 		      '1 Screen is never an issue
@@ -215,9 +215,9 @@ Protected Module modWindowPositionFix
 		    
 		    'get position and scale
 		    Dim hMon As Integer = poWindow.IsOnMonitorHandle
-		    Dim rectMonitor As REALbasic.Rect = GetMonitorRect(hMon, False)
-		    Dim rectWindow As REALbasic.Rect = poWindow.GetWindowRect
-		    Dim boundsWindow As REALbasic.Rect = poWindow.Bounds
+		    Dim rectMonitor As Xojo.Rect = GetMonitorRect(hMon, False)
+		    Dim rectWindow As Xojo.Rect = poWindow.GetWindowRect
+		    Dim boundsWindow As Xojo.Rect = poWindow.Bounds
 		    Dim dScale As Double = Round((rectWindow.Height / boundsWindow.Height)*100)/100
 		    
 		    'respect size of window decoration
@@ -239,9 +239,9 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Function IsOnMonitorHandle(Extends poWindow As Window) As Integer
+		Function IsOnMonitorHandle(Extends poWindow As DesktopWindow) As Integer
 		  #If TargetWindows Then
-		    Declare Function MonitorFromWindow Lib "User32" (hwnd As Integer, dwFlags As UInt32) As Integer
+		    Declare Function MonitorFromWindow Lib "User32" (hwnd As Ptr, dwFlags As UInt32) As Integer
 		    Const MONITOR_DEFAULTTONULL As UInt32 = &H0
 		    Const MONITOR_DEFAULTTOPRIMARY As UInt32 = &H1
 		    Const MONITOR_DEFAULTTONEAREST As UInt32 = &H2
@@ -254,8 +254,23 @@ Protected Module modWindowPositionFix
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
+		Function IsOnMonitorIndex(Extends poWindow As DesktopWindow) As Integer
+		  If (ScreenCount < 2) Then Return 0
+		  
+		  #If TargetWindows Then
+		    MonitorsGet
+		    Dim hMon As Integer = poWindow.IsOnMonitorHandle
+		    If (eiMonitorHandles.IndexOf(hMon) >= 0) Then Return eiMonitorHandles.IndexOf(hMon)
+		    Return 0
+		  #Else
+		    Return poWindow.IsOnScreen
+		  #EndIf
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Function IsOnMonitorIndex(Extends poRect As REALbasic.Rect) As Integer
+		Function IsOnMonitorIndex(Extends poRect As Xojo.Rect) As Integer
 		  If (ScreenCount < 2) Then Return 0
 		  
 		  #If TargetWindows Then
@@ -289,23 +304,26 @@ Protected Module modWindowPositionFix
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Function IsOnMonitorIndex(Extends poWindow As Window) As Integer
+	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
+		Function IsOnScreen(Extends poWindow As DesktopWindow) As Integer
 		  If (ScreenCount < 2) Then Return 0
 		  
-		  #If TargetWindows Then
-		    MonitorsGet
-		    Dim hMon As Integer = poWindow.IsOnMonitorHandle
-		    If (eiMonitorHandles.IndexOf(hMon) >= 0) Then Return eiMonitorHandles.IndexOf(hMon)
+		  Try
+		    'Decorations might be outside of the Window (in FullScreen)
+		    'Dim currentWindowBounds As Xojo.Rect = poWindow.Bounds
+		    
+		    'that's why we check the position using .Left/.Top values
+		    Dim currentWindowBounds As New Xojo.Rect(poWindow.Left, poWindow.Top, poWindow.Width, poWindow.Height)
+		    Return currentWindowBounds.IsOnScreen
+		    
+		  Catch err As RuntimeException
 		    Return 0
-		  #Else
-		    Return poWindow.IsOnScreen
-		  #EndIf
+		  End Try
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Function IsOnScreen(Extends poRect As REALbasic.Rect) As Integer
+		Function IsOnScreen(Extends poRect As Xojo.Rect) As Integer
 		  If (ScreenCount < 2) Then Return 0
 		  
 		  Try
@@ -345,24 +363,6 @@ Protected Module modWindowPositionFix
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Function IsOnScreen(Extends poWindow As Window) As Integer
-		  If (ScreenCount < 2) Then Return 0
-		  
-		  Try
-		    'Decorations might be outside of the Window (in FullScreen)
-		    'Dim currentWindowBounds As REALbasic.Rect = poWindow.Bounds
-		    
-		    'that's why we check the position using .Left/.Top values
-		    Dim currentWindowBounds As New REALbasic.Rect(poWindow.Left, poWindow.Top, poWindow.Width, poWindow.Height)
-		    Return currentWindowBounds.IsOnScreen
-		    
-		  Catch err As RuntimeException
-		    Return 0
-		  End Try
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
 		Function MonitorCount() As Integer
 		  #If TargetWindows Then
@@ -384,7 +384,7 @@ Protected Module modWindowPositionFix
 		    #Pragma unused lprect
 		    #Pragma unused lparam
 		    
-		    Dim rectMonitor As REALbasic.Rect = GetMonitorRect(hMonitor, False)
+		    Dim rectMonitor As Xojo.Rect = GetMonitorRect(hMonitor, False)
 		    If (rectMonitor.Left = 0) And (rectMonitor.Top = 0) Then
 		      eiMonitorHandles.Insert(0, hMonitor)
 		    Else
@@ -428,7 +428,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Sub PutOnMonitorIndex(Extends poWindow As Window, piMonitorIndex As Integer = 0)
+		Sub PutOnMonitorIndex(Extends poWindow As DesktopWindow, piMonitorIndex As Integer = 0)
 		  #If TargetWindows Then
 		    Try
 		      If (MonitorCount < 2) Then Return
@@ -440,14 +440,14 @@ Protected Module modWindowPositionFix
 		      Dim hMonOrig As Integer = poWindow.IsOnMonitorHandle
 		      Dim hMon As Integer = eiMonitorHandles(piMonitorIndex)
 		      
-		      Dim rectWork As REALbasic.Rect = GetMonitorRect(hmon, True)
-		      Dim rectWindowOrig As REALbasic.Rect = poWindow.GetWindowRect
-		      Dim rectWindow As REALbasic.Rect = poWindow.GetWindowRect
+		      Dim rectWork As Xojo.Rect = GetMonitorRect(hmon, True)
+		      Dim rectWindowOrig As Xojo.Rect = poWindow.GetWindowRect
+		      Dim rectWindow As Xojo.Rect = poWindow.GetWindowRect
 		      
 		      Dim iWidth As Integer = poWindow.Width
 		      Dim iHeight As Integer = poWindow.Height
 		      
-		      Declare Function MoveWindow Lib "User32" (hWnd As Integer, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
+		      Declare Function MoveWindow Lib "User32" (hWnd As Ptr, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
 		      
 		      'put on Monitor
 		      If (hMon <> hMonOrig) Then
@@ -495,7 +495,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = TargetHasGUI
-		Sub PutOnScreen(Extends poWindow As Window, piScreen As Integer = 0)
+		Sub PutOnScreen(Extends poWindow As DesktopWindow, piScreen As Integer = 0)
 		  Try
 		    If (ScreenCount < 2) Then Return
 		    
@@ -504,8 +504,8 @@ Protected Module modWindowPositionFix
 		    Dim iScreenAvailableLeft As Integer = oScreen.AvailableLeft
 		    
 		    'use Bounds (respects window decoration, toolbar)
-		    Dim currentWindowBounds As REALbasic.Rect = poWindow.Bounds
-		    Dim setWindowBounds As New REALbasic.Rect(currentWindowBounds.Left, currentWindowBounds.Top, currentWindowBounds.Width, currentWindowBounds.Height)
+		    Dim currentWindowBounds As Xojo.Rect = poWindow.Bounds
+		    Dim setWindowBounds As New Xojo.Rect(currentWindowBounds.Left, currentWindowBounds.Top, currentWindowBounds.Width, currentWindowBounds.Height)
 		    
 		    'Window size needs to fit on Screen
 		    If (setWindowBounds.Width > oScreen.AvailableWidth) Then setWindowBounds.Width = oScreen.AvailableWidth
@@ -529,7 +529,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Sub SetPosition_AtMonitorPosition(Extends poWindow As Window, piMonitorIndex As Integer, piPosX As Integer, piPosY As Integer)
+		Sub SetPosition_AtMonitorPosition(Extends poWindow As DesktopWindow, piMonitorIndex As Integer, piPosX As Integer, piPosY As Integer)
 		  #If TargetWindows Then
 		    Try
 		      'just to double-check later
@@ -555,8 +555,8 @@ Protected Module modWindowPositionFix
 		      'make sure it's on the desired monitor first
 		      poWindow.FitOnMonitor(hMon)
 		      
-		      Dim rectMonitor As REALbasic.Rect = GetMonitorRect(hmon, False)
-		      Dim rectWindow As REALbasic.Rect = poWindow.GetWindowRect
+		      Dim rectMonitor As Xojo.Rect = GetMonitorRect(hmon, False)
+		      Dim rectWindow As Xojo.Rect = poWindow.GetWindowRect
 		      Dim dScale As Double = Round((rectWindow.Height / poWindow.Bounds.Height)*100)/100
 		      
 		      'now position relative to Monitor
@@ -576,7 +576,7 @@ Protected Module modWindowPositionFix
 		      If (rectWindow.Top + rectWindow.Height) > (rectMonitor.Top + rectMonitor.Height) Then rectWindow.Top = rectMonitor.Top + rectMonitor.Height - rectWindow.Height
 		      
 		      'assign position
-		      Declare Function MoveWindow Lib "User32" (hWnd As Integer, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
+		      Declare Function MoveWindow Lib "User32" (hWnd As Ptr, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
 		      
 		      Call MoveWindow(poWindow.Handle, rectWindow.Left, rectWindow.Top, rectWindow.Width, rectWindow.Height, True)
 		      If (poWindow.Width <> iWindowWidth) Or (poWindow.Height <> iWindowHeight) Then
@@ -600,7 +600,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Sub SetPosition_AtScreenPosition(Extends poWindow As Window, piScreenIndex As Integer, piPosX As Integer, piPosY As Integer)
+		Sub SetPosition_AtScreenPosition(Extends poWindow As DesktopWindow, piScreenIndex As Integer, piPosX As Integer, piPosY As Integer)
 		  If (piScreenIndex < 0) Then piScreenIndex = 0
 		  If (piScreenIndex > (ScreenCount-1)) Then piScreenIndex = 0
 		  
@@ -614,7 +614,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Sub SetPosition_CenterToParent(Extends poWindow As Window, poParent As Window)
+		Sub SetPosition_CenterToParent(Extends poWindow As DesktopWindow, poParent As DesktopWindow)
 		  If (poParent = Nil) Then Return
 		  
 		  #If TargetWindows Then
@@ -623,8 +623,8 @@ Protected Module modWindowPositionFix
 		      'put it on the same Monitor as it's parent first
 		      poWindow.FitOnMonitor(poParent.IsOnMonitorHandle)
 		      
-		      Dim rectParent As REALbasic.Rect = poParent.GetWindowRect
-		      Dim rectWindow As REALbasic.Rect = poWindow.GetWindowRect
+		      Dim rectParent As Xojo.Rect = poParent.GetWindowRect
+		      Dim rectWindow As Xojo.Rect = poWindow.GetWindowRect
 		      
 		      'the scale factor is
 		      Dim dScale As Double = Round((rectParent.Height / poParent.Bounds.Height)*100)/100
@@ -640,7 +640,7 @@ Protected Module modWindowPositionFix
 		      End If
 		      
 		      'assign position
-		      Declare Function MoveWindow Lib "User32" (hWnd As Integer, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
+		      Declare Function MoveWindow Lib "User32" (hWnd As Ptr, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
 		      Call MoveWindow(poWindow.Handle, rectWindow.Left, rectWindow.Top, rectWindow.Width, rectWindow.Height, True)
 		      
 		    Catch err As RuntimeException
@@ -658,9 +658,9 @@ Protected Module modWindowPositionFix
 		      iParentIsOnScreen = poParent.IsOnScreen
 		      poWindow.PutOnScreen(iParentIsOnScreen)
 		      
-		      Dim parentWindowBounds As REALbasic.Rect = poParent.Bounds
-		      Dim currentWindowBounds As REALbasic.Rect = poWindow.Bounds
-		      Dim setWindowBounds As New REALbasic.Rect(currentWindowBounds.Left, currentWindowBounds.Top, currentWindowBounds.Width, currentWindowBounds.Height)
+		      Dim parentWindowBounds As Xojo.Rect = poParent.Bounds
+		      Dim currentWindowBounds As Xojo.Rect = poWindow.Bounds
+		      Dim setWindowBounds As New Xojo.Rect(currentWindowBounds.Left, currentWindowBounds.Top, currentWindowBounds.Width, currentWindowBounds.Height)
 		      
 		      If (poWindow.Width >= poParent.Width - 10) And (poWindow.Height >= poParent.Height - 10) Then
 		        'if it overlaps the parent, put it a bit below
@@ -686,7 +686,7 @@ Protected Module modWindowPositionFix
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetDesktop and (Target32Bit or Target64Bit))
-		Sub SetPosition_UsingRect(Extends poWindow As Window, poSetPositionRect As REALbasic.Rect, poParent As Window = nil)
+		Sub SetPosition_UsingRect(Extends poWindow As DesktopWindow, poSetPositionRect As Xojo.Rect, poParent As DesktopWindow = nil)
 		  'Rectangle is representing the Window, but using it's .Top/.Left/.Width/.Height
 		  'and NOT using it's bounds!
 		  
@@ -712,7 +712,7 @@ Protected Module modWindowPositionFix
 		  
 		  #If TargetWindows Then
 		    Try
-		      Dim rectWindow As REALbasic.Rect
+		      Dim rectWindow As Xojo.Rect
 		      Dim dScale As Double = 1.0
 		      
 		      If (poParent = Nil) Then
@@ -773,7 +773,7 @@ Protected Module modWindowPositionFix
 		          
 		          'Position values relative to Monitor
 		          Dim iMonitorIndex As Integer = rectWindow.IsOnMonitorIndex
-		          Dim rectMonitor As REALbasic.Rect = GetMonitorRect(MonitorHandle(iMonitorIndex), False)
+		          Dim rectMonitor As Xojo.Rect = GetMonitorRect(MonitorHandle(iMonitorIndex), False)
 		          're-scale in Xojo coordinates
 		          Dim iPosX As Integer = Ceil((rectWindow.Left - rectMonitor.Left)/dScale)
 		          Dim iPosY As Integer = Ceil((rectWindow.Top - rectMonitor.Top)/dScale)
@@ -805,7 +805,7 @@ Protected Module modWindowPositionFix
 		      Dim iWindowTopDecoration As Integer = poWindow.Top - poWindow.Bounds.Top
 		      
 		      'the parent's decoration might be different
-		      Dim rectParent As REALbasic.Rect = poParent.GetWindowRect
+		      Dim rectParent As Xojo.Rect = poParent.GetWindowRect
 		      Dim iParentLeftDecoration As Integer = poParent.Left - poParent.Bounds.Left
 		      Dim iParentTopDecoration As Integer = poParent.Top - poParent.Bounds.Top
 		      
@@ -813,7 +813,7 @@ Protected Module modWindowPositionFix
 		      Dim iLeftAddDecoration As Integer = iParentLeftDecoration - iWindowLeftDecoration
 		      Dim iTopAddDecoration As Integer = iParentTopDecoration - iWindowTopDecoration
 		      
-		      Declare Function MoveWindow Lib "User32" (hWnd As Integer, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
+		      Declare Function MoveWindow Lib "User32" (hWnd As Ptr, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
 		      
 		      Call MoveWindow(poWindow.Handle, rectParent.Left + Ceil(iLeftAdd*dScale) + Ceil(iLeftAddDecoration*dScale), rectParent.Top + Ceil(iTopAdd*dScale) + Ceil(iTopAddDecoration*dScale), Ceil(poSetPositionRect.Width*dScale), Ceil(poSetPositionRect.Height*dScale), True)
 		      If (poWindow.Width <> poSetPositionRect.Width) Or (poWindow.Height <> poSetPositionRect.Height) Then
@@ -883,7 +883,9 @@ Protected Module modWindowPositionFix
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -891,12 +893,15 @@ Protected Module modWindowPositionFix
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -904,6 +909,7 @@ Protected Module modWindowPositionFix
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -911,6 +917,7 @@ Protected Module modWindowPositionFix
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module
