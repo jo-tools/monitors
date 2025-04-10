@@ -156,6 +156,7 @@ Protected Module modWindowPositionFix
 		Function GetMonitorRect(hMon As Integer, pbWork As Boolean) As Xojo.Rect
 		  #If TargetWindows Then
 		    Declare Function GetMonitorInfoW Lib "User32" (hMonitor As Integer, ByRef lpMInfo As LPMONITORINFO) As Boolean
+		    
 		    Dim MyMonInfo As LPMONITORINFO
 		    MyMonInfo.cbSize = MyMonInfo.Size
 		    Call GetMonitorInfoW(hMon, MyMonInfo)
@@ -301,6 +302,7 @@ Protected Module modWindowPositionFix
 		Function IsOnMonitorHandle(Extends poWindow As DesktopWindow) As Integer
 		  #If TargetWindows Then
 		    Declare Function MonitorFromWindow Lib "User32" (hwnd As Ptr, dwFlags As UInt32) As Integer
+		    
 		    Const MONITOR_DEFAULTTONULL As UInt32 = &H0
 		    Const MONITOR_DEFAULTTOPRIMARY As UInt32 = &H1
 		    Const MONITOR_DEFAULTTONEAREST As UInt32 = &H2
@@ -319,6 +321,7 @@ Protected Module modWindowPositionFix
 		  
 		  #If TargetWindows Then
 		    MonitorsGet
+		    
 		    Dim hMon As Integer = poWindow.IsOnMonitorHandle
 		    If (eiMonitorHandles.IndexOf(hMon) >= 0) Then Return eiMonitorHandles.IndexOf(hMon)
 		    Return 0
@@ -334,6 +337,7 @@ Protected Module modWindowPositionFix
 		  
 		  #If TargetWindows Then
 		    Declare Function MonitorFromRect  Lib "User32" (ByRef lprc As LPRECT, dwFlags As UInt32) As Integer
+		    
 		    Const MONITOR_DEFAULTTONULL As UInt32 = &H0
 		    Const MONITOR_DEFAULTTOPRIMARY As UInt32 = &H1
 		    Const MONITOR_DEFAULTTONEAREST As UInt32 = &H2
@@ -367,6 +371,7 @@ Protected Module modWindowPositionFix
 		Function MonitorCount() As Integer
 		  #If TargetWindows Then
 		    MonitorsGet
+		    
 		    Return (eiMonitorHandles.LastIndex + 1)
 		    
 		  #Else
@@ -405,6 +410,7 @@ Protected Module modWindowPositionFix
 		Function MonitorHandle(piMonitorIndex As Integer) As Integer
 		  #If TargetWindows Then
 		    MonitorsGet
+		    
 		    If (eiMonitorHandles.LastIndex >= piMonitorIndex) Then Return eiMonitorHandles(piMonitorIndex)
 		    If (eiMonitorHandles.LastIndex >= 0) Then Return eiMonitorHandles(0)
 		  #Else
