@@ -136,7 +136,6 @@ Begin DesktopWindow Window1
       Width           =   240
    End
    Begin Timer timRefresh
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   True
       Mode            =   2
@@ -1459,11 +1458,11 @@ End
 		Sub Opening()
 		  Dim sScreens() As String
 		  For i As Integer = 0 To DesktopDisplay.DisplayCount-1
-		    sScreens.Add("Screen(" + Str(i) + ") => " + _
-		    "Left: " + Str(DesktopDisplay.DisplayAt(i).Left) + _
-		    ", Top: " + Str(DesktopDisplay.DisplayAt(i).Top) + _
-		    ", Width: " + Str(DesktopDisplay.DisplayAt(i).Width) + _
-		    ", Height: " + Str(DesktopDisplay.DisplayAt(i).Height) + _
+		    sScreens.Add("DisplayAt(" + i.ToString + ") => " + _
+		    "Left: " + DesktopDisplay.DisplayAt(i).Left.ToString + _
+		    ", Top: " + DesktopDisplay.DisplayAt(i).Top.ToString + _
+		    ", Width: " + DesktopDisplay.DisplayAt(i).Width.ToString + _
+		    ", Height: " + DesktopDisplay.DisplayAt(i).Height.ToString + _
 		    EndOfLine)
 		  Next
 		  
@@ -1476,32 +1475,32 @@ End
 	#tag Event
 		Sub Action()
 		  Dim iIsOnScreen As Integer = Self.IsOnScreen
-		  labIsOnScreen.Text = "IsOnScreen: " + Str(iIsOnScreen) + EndOfLine + _
-		  "Left: " + Str(DesktopDisplay.DisplayAt(iIsOnScreen).Left) + ", Top: " + Str(DesktopDisplay.DisplayAt(iIsOnScreen).Top) + EndOfLine + _
-		  "Dimension: " + Str(DesktopDisplay.DisplayAt(iIsOnScreen).Width) + "x" + Str(DesktopDisplay.DisplayAt(iIsOnScreen).Height) + EndOfLine + _
+		  labIsOnScreen.Text = "IsOnScreen: " + iIsOnScreen.ToString + EndOfLine + _
+		  "Left: " + DesktopDisplay.DisplayAt(iIsOnScreen).Left.ToString + ", Top: " + DesktopDisplay.DisplayAt(iIsOnScreen).Top.ToString + EndOfLine + _
+		  "Dimension: " + DesktopDisplay.DisplayAt(iIsOnScreen).Width.ToString + "x" + DesktopDisplay.DisplayAt(iIsOnScreen).Height.ToString + EndOfLine + _
 		  "ScaleFactor: " + Format(Self.ScaleFactor, "#0.0#")
 		  
 		  labWindowPosition.Text = "Window.Bounds: " + _
-		  "Left: " + Str(Self.Bounds.Left) + ", Top: " + Str(Self.Bounds.Top) + EndOfLine + _
-		  Str(Self.Bounds.Width) + "x" + Str(Self.Bounds.Height) + EndOfLine + _
+		  "Left: " + Self.Bounds.Left.ToString + ", Top: " + Self.Bounds.Top.ToString + EndOfLine + _
+		  Self.Bounds.Width.ToString + "x" + Self.Bounds.Height.ToString + EndOfLine + _
 		  "Window.Pos: " + _
-		  "Left: " + Str(Self.Left) + ", Top: " + Str(Self.Top) + EndOfLine + _
-		  Str(Self.Width) + "x" + Str(Self.Height)
+		  "Left: " + Self.Left.ToString + ", Top: " + Self.Top.ToString + EndOfLine + _
+		  Self.Width.ToString + "x" + Self.Height.ToString
 		  
 		  #If TargetWindows Then
 		    Dim hMon As Integer = Self.IsOnMonitorHandle
 		    Dim oRect As Xojo.Rect = GetMonitorRect(hMon, False)
 		    Dim dScale As Double = Round((Self.GetWindowRect.Height / Self.Bounds.Height)*100)/100
 		    
-		    labIsOnMonitor.Text = "IsOnMonitor: " + Str(hMon) + " (MonitorIndex: " + Str(Self.IsOnMonitorIndex) + ")" + EndOfLine + _
-		    "Left: " + Str(oRect.Left) + ", Top: " + Str(oRect.Top) + EndOfLine + _
-		    Str(oRect.Width) + "x" + Str(oRect.Height) + EndOfLine + _
+		    labIsOnMonitor.Text = "IsOnMonitor: " + hMon.ToString + " (MonitorIndex: " + Self.IsOnMonitorIndex.ToString + ")" + EndOfLine + _
+		    "Left: " + oRect.Left.ToString + ", Top: " + oRect.Top.ToString + EndOfLine + _
+		    oRect.Width.ToString + "x" + oRect.Height.ToString + EndOfLine + _
 		    "ScaleFactor: " + Format(dScale, "#0.0#")
 		    
 		    oRect = Self.GetWindowRect
 		    labWindowRect.Text = "WindowRect: " + _
-		    "Left: " + Str(oRect.Left) + ", Top: " + Str(oRect.Top) + EndOfLine + _
-		    Str(oRect.Width) + "x" + Str(oRect.Height)
+		    "Left: " + oRect.Left.ToString + ", Top: " + oRect.Top.ToString + EndOfLine + _
+		    oRect.Width.ToString + "x" + oRect.Height.ToString
 		  #Else
 		    labIsOnMonitor.Text = "n/a"
 		    labWindowRect.Text = "n/a"
@@ -1512,10 +1511,10 @@ End
 		  Dim iScreen As Integer = Self.IsOnScreen 'that's just using Xojo Framework (for WindowsAPI, use self.IsOnMonitorIndex)
 		  iPosX = Self.Left - DesktopDisplay.DisplayAt(iScreen).Left
 		  iPosY = Self.Top - DesktopDisplay.DisplayAt(iScreen).Top
-		  labPosRelativeOnScreen.Text = "at relative Screen Pos: " + Str(iPosX) + "x, " + Str(iPosY) + "y"
+		  labPosRelativeOnScreen.Text = "at relative Screen Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
 		  
 		  Self.IsAtRelativeMonitorPosition(iPosX, iPosY) 'that's using Windows API if possible
-		  labPosRelativeOnMonitor.Text = "at relative Monitor Pos: " + Str(iPosX) + "x, " + Str(iPosY) + "y"
+		  labPosRelativeOnMonitor.Text = "at relative Monitor Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
 		  
 		  
 		End Sub
@@ -1543,7 +1542,7 @@ End
 		Sub Opening()
 		  Me.RemoveAllRows
 		  For i As Integer = -500 To 500 Step 50
-		    Me.AddRow Str(i)
+		    Me.AddRow i.ToString
 		  Next
 		  Me.SelectedRowIndex = 12
 		End Sub
@@ -1554,7 +1553,7 @@ End
 		Sub Opening()
 		  Me.RemoveAllRows
 		  For i As Integer = -500 To 500 Step 50
-		    Me.AddRow Str(i)
+		    Me.AddRow i.ToString
 		  Next
 		  Me.SelectedRowIndex = 12
 		End Sub
@@ -1619,15 +1618,15 @@ End
 		        'Dim dRatio As Double =  Effxdpi/96
 		      End If
 		      
-		      sMonitors.Append("Monitor(" + Str(i) + ") => " + _
-		      "Handle: " + Str(MonitorHandle(i)) + _
-		      ", Left: " + Str(oRect.Left) + ", Top: " + Str(oRect.Top) + _
-		      ", Width: " + Str(oRect.Width) + ", Height: " + Str(oRect.Height) + _
+		      sMonitors.Add("Monitor(" + i.ToString + ") => " + _
+		      "Handle: " + MonitorHandle(i).ToString + _
+		      ", Left: " + oRect.Left.ToString + ", Top: " + oRect.Top.ToString + _
+		      ", Width: " + oRect.Width.ToString + ", Height: " + oRect.Height.ToString + _
 		      EndOfLine)
 		      '"ScaleFactor (ratio): " + Format(dRatio, "#0.0#") + _
 		    Next
 		    
-		    Me.Text = Join(sMonitors, EndOfLine)
+		    Me.Text = String.FromArray(sMonitors, EndOfLine)
 		  #Else
 		    Me.Text = "n/a"
 		  #EndIf
@@ -1639,7 +1638,7 @@ End
 		Sub Opening()
 		  Me.RemoveAllRows
 		  For i As Integer = 0 To DesktopDisplay.DisplayCount-1
-		    Me.AddRow(Str(i))
+		    Me.AddRow(i.ToString)
 		  Next
 		  
 		  Me.SelectedRowIndex = 0

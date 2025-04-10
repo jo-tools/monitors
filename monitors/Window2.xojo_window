@@ -114,10 +114,10 @@ End
 #tag Events labInfo
 	#tag Event
 		Sub Opening()
-		  Me.Text = "Left: " + Str(Self.Left) + EndOfLine + _
-		  "Top: " + Str(Self.Top) + EndOfLine + _
-		  "Width: " + Str(Self.Width) + EndOfLine + _
-		  "Height: " + Str(Self.Height)
+		  Me.Text = "Left: " + Self.Left.ToString + EndOfLine + _
+		  "Top: " + Self.Top.ToString + EndOfLine + _
+		  "Width: " + Self.Width.ToString + EndOfLine + _
+		  "Height: " + Self.Height.ToString
 		  
 		End Sub
 	#tag EndEvent
@@ -128,9 +128,9 @@ End
 		  Dim iPosX, iPosY As Integer
 		  Self.IsAtRelativeMonitorPosition(iPosX, iPosY)
 		  
-		  labInfo.Text = "Left: " + Str(Self.Left) + ", Top: " + Str(Self.Top) + EndOfLine + _
-		  "Width: " + Str(Self.Width) + ", Height: " + Str(Self.Height) + EndOfLine + _
-		  "at relative Monitor Pos: " + Str(iPosX) + "x, " + Str(iPosY) + "y"
+		  labInfo.Text = "Left: " + Self.Left.ToString + ", Top: " + Self.Top.ToString + EndOfLine + _
+		  "Width: " + Self.Width.ToString + ", Height: " + Self.Height.ToString + EndOfLine + _
+		  "at relative Monitor Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
 		  
 		End Sub
 	#tag EndEvent

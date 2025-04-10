@@ -95,7 +95,7 @@ Protected Module modWindowPositionFix
 		    Dim hMon As Integer = 0
 		    If (piMonitorIndex >= 0) Then
 		      MonitorsGet
-		      If (eiMonitorHandles.Ubound >= piMonitorIndex) Then hMon = eiMonitorHandles(piMonitorIndex)
+		      If (eiMonitorHandles.LastIndex >= piMonitorIndex) Then hMon = eiMonitorHandles(piMonitorIndex)
 		    End If
 		    poWindow.FitOnMonitor(hMon)
 		  #Else
@@ -223,8 +223,8 @@ Protected Module modWindowPositionFix
 		    'respect size of window decoration
 		    Dim iWindowLeftDecoration As Integer = poWindow.Left - poWindow.Bounds.Left
 		    Dim iWindowTopDecoration As Integer = poWindow.Top - poWindow.Bounds.Top
-		    rectWindow.Left = rectWindow.Left + Ceil(iWindowLeftDecoration * dScale)
-		    rectWindow.Top = rectWindow.Top + Ceil(iWindowTopDecoration * dScale)
+		    rectWindow.Left = rectWindow.Left + Ceiling(iWindowLeftDecoration * dScale)
+		    rectWindow.Top = rectWindow.Top + Ceiling(iWindowTopDecoration * dScale)
 		    
 		    'Xojo Window will have the following relative .Left/Top values on this monitor
 		    piPosX = (rectWindow.Left - rectMonitor.Left)/dScale
@@ -367,7 +367,7 @@ Protected Module modWindowPositionFix
 		Function MonitorCount() As Integer
 		  #If TargetWindows Then
 		    MonitorsGet
-		    Return (eiMonitorHandles.Ubound + 1)
+		    Return (eiMonitorHandles.LastIndex + 1)
 		    
 		  #Else
 		    Return DesktopDisplay.DisplayCount
@@ -386,9 +386,9 @@ Protected Module modWindowPositionFix
 		    
 		    Dim rectMonitor As Xojo.Rect = GetMonitorRect(hMonitor, False)
 		    If (rectMonitor.Left = 0) And (rectMonitor.Top = 0) Then
-		      eiMonitorHandles.Insert(0, hMonitor)
+		      eiMonitorHandles.AddAt(0, hMonitor)
 		    Else
-		      eiMonitorHandles.Append(hMonitor)
+		      eiMonitorHandles.Add(hMonitor)
 		    End If
 		    
 		    Return True
@@ -405,8 +405,8 @@ Protected Module modWindowPositionFix
 		Function MonitorHandle(piMonitorIndex As Integer) As Integer
 		  #If TargetWindows Then
 		    MonitorsGet
-		    If (eiMonitorHandles.Ubound >= piMonitorIndex) Then Return eiMonitorHandles(piMonitorIndex)
-		    If (eiMonitorHandles.Ubound >= 0) Then Return eiMonitorHandles(0)
+		    If (eiMonitorHandles.LastIndex >= piMonitorIndex) Then Return eiMonitorHandles(piMonitorIndex)
+		    If (eiMonitorHandles.LastIndex >= 0) Then Return eiMonitorHandles(0)
 		  #Else
 		    #Pragma unused piMonitorIndex
 		  #EndIf
@@ -432,10 +432,10 @@ Protected Module modWindowPositionFix
 		  #If TargetWindows Then
 		    Try
 		      If (MonitorCount < 2) Then Return
-		      If (eiMonitorHandles.Ubound < 0) Then Return
+		      If (eiMonitorHandles.LastIndex < 0) Then Return
 		      
 		      If (piMonitorIndex >= MonitorCount) Then piMonitorIndex = 0
-		      If (eiMonitorHandles.Ubound > piMonitorIndex) Then piMonitorIndex = 0
+		      If (eiMonitorHandles.LastIndex > piMonitorIndex) Then piMonitorIndex = 0
 		      
 		      Dim hMonOrig As Integer = poWindow.IsOnMonitorHandle
 		      Dim hMon As Integer = eiMonitorHandles(piMonitorIndex)
@@ -560,14 +560,14 @@ Protected Module modWindowPositionFix
 		      Dim dScale As Double = Round((rectWindow.Height / poWindow.Bounds.Height)*100)/100
 		      
 		      'now position relative to Monitor
-		      rectWindow.Left = rectMonitor.Left + Ceil(piPosX * dScale)
-		      rectWindow.Top = rectMonitor.Top + Ceil(piPosY * dScale)
+		      rectWindow.Left = rectMonitor.Left + Ceiling(piPosX * dScale)
+		      rectWindow.Top = rectMonitor.Top + Ceiling(piPosY * dScale)
 		      
 		      'respect size of window decoration
 		      Dim iWindowLeftDecoration As Integer = poWindow.Left - poWindow.Bounds.Left
 		      Dim iWindowTopDecoration As Integer = poWindow.Top - poWindow.Bounds.Top
-		      rectWindow.Left = rectWindow.Left - Ceil(iWindowLeftDecoration * dScale)
-		      rectWindow.Top = rectWindow.Top - Ceil(iWindowTopDecoration * dScale)
+		      rectWindow.Left = rectWindow.Left - Ceiling(iWindowLeftDecoration * dScale)
+		      rectWindow.Top = rectWindow.Top - Ceiling(iWindowTopDecoration * dScale)
 		      
 		      'is it still on the Monitor?
 		      If (rectWindow.Left < rectMonitor.Left) Then rectWindow.Left = rectMonitor.Left
@@ -631,12 +631,12 @@ Protected Module modWindowPositionFix
 		      
 		      If (rectWindow.Width >= rectParent.Width - (10*dScale)) And (rectWindow.Height >= rectParent.Height - (10*dScale)) Then
 		        'if it overlaps the parent, put it a bit below
-		        rectWindow.Left = rectParent.Left + Ceil(20*dScale)
-		        rectWindow.Top = rectParent.Top + Ceil(40*dScale)
+		        rectWindow.Left = rectParent.Left + Ceiling(20*dScale)
+		        rectWindow.Top = rectParent.Top + Ceiling(40*dScale)
 		      Else
 		        'center in parent
-		        rectWindow.Left = rectParent.Left + Ceil((rectParent.Width - rectWindow.Width)/2)
-		        rectWindow.Top = rectParent.Top + Ceil((rectParent.Height - rectWindow.Height)/2)
+		        rectWindow.Left = rectParent.Left + Ceiling((rectParent.Width - rectWindow.Width)/2)
+		        rectWindow.Top = rectParent.Top + Ceiling((rectParent.Height - rectWindow.Height)/2)
 		      End If
 		      
 		      'assign position
@@ -768,15 +768,15 @@ Protected Module modWindowPositionFix
 		        'position it
 		        //NOTE: We're relying on Xojo here... things may go wrong...
 		        #If (XojoVersion < 2018.04) Then
-		          rectWindow.Left = Ceil(poSetPositionRect.Left * dScale)
-		          rectWindow.Top = Ceil(poSetPositionRect.Top * dScale)
+		          rectWindow.Left = Ceiling(poSetPositionRect.Left * dScale)
+		          rectWindow.Top = Ceiling(poSetPositionRect.Top * dScale)
 		          
 		          'Position values relative to Monitor
 		          Dim iMonitorIndex As Integer = rectWindow.IsOnMonitorIndex
 		          Dim rectMonitor As Xojo.Rect = GetMonitorRect(MonitorHandle(iMonitorIndex), False)
 		          're-scale in Xojo coordinates
-		          Dim iPosX As Integer = Ceil((rectWindow.Left - rectMonitor.Left)/dScale)
-		          Dim iPosY As Integer = Ceil((rectWindow.Top - rectMonitor.Top)/dScale)
+		          Dim iPosX As Integer = Ceiling((rectWindow.Left - rectMonitor.Left)/dScale)
+		          Dim iPosY As Integer = Ceiling((rectWindow.Top - rectMonitor.Top)/dScale)
 		          'place it at the desired Position on the Monitor
 		          poWindow.SetPosition_AtMonitorPosition(iMonitorIndex, iPosX, iPosY)
 		        #Else
@@ -815,7 +815,7 @@ Protected Module modWindowPositionFix
 		      
 		      Declare Function MoveWindow Lib "User32" (hWnd As Ptr, x As Int32, y As Int32, nWidth As Int32, nHeight As Int32, bRepaint As Boolean) As Boolean
 		      
-		      Call MoveWindow(poWindow.Handle, rectParent.Left + Ceil(iLeftAdd*dScale) + Ceil(iLeftAddDecoration*dScale), rectParent.Top + Ceil(iTopAdd*dScale) + Ceil(iTopAddDecoration*dScale), Ceil(poSetPositionRect.Width*dScale), Ceil(poSetPositionRect.Height*dScale), True)
+		      Call MoveWindow(poWindow.Handle, rectParent.Left + Ceiling(iLeftAdd*dScale) + Ceiling(iLeftAddDecoration*dScale), rectParent.Top + Ceiling(iTopAdd*dScale) + Ceiling(iTopAddDecoration*dScale), Ceiling(poSetPositionRect.Width*dScale), Ceiling(poSetPositionRect.Height*dScale), True)
 		      If (poWindow.Width <> poSetPositionRect.Width) Or (poWindow.Height <> poSetPositionRect.Height) Then
 		        poWindow.Width = poSetPositionRect.Width
 		        poWindow.Height = poSetPositionRect.Height
