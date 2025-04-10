@@ -330,7 +330,7 @@ Begin DesktopWindow Window1
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Using Xojo's API"
+      Text            =   "Using Xojo API"
       TextAlignment   =   0
       TextColor       =   &c00000000
       Tooltip         =   ""
@@ -1567,8 +1567,8 @@ End
 		  
 		  Dim setPositionRect As New Xojo.Rect
 		  
-		  setPositionRect.Left = Self.Left + Val(lstAddX.SelectedRowText)
-		  setPositionRect.Top = Self.Top + Val(lstAddY.SelectedRowText)
+		  setPositionRect.Left = Self.Left + lstAddX.SelectedRowText.Val
+		  setPositionRect.Top = Self.Top + lstAddY.SelectedRowText.Val
 		  setPositionRect.Width = oWnd.Width
 		  setPositionRect.Height = oWnd.Height
 		  
@@ -1591,8 +1591,8 @@ End
 		Sub Pressed()
 		  Dim oWnd As New Window2
 		  
-		  oWnd.Left = Self.Left + Val(lstAddX.SelectedRowText)
-		  oWnd.Top = Self.Top + Val(lstAddY.SelectedRowText)
+		  oWnd.Left = Self.Left + lstAddX.SelectedRowText.Val
+		  oWnd.Top = Self.Top + lstAddY.SelectedRowText.Val
 		  
 		  'This is buggy, too - so let's just see what happens when setting the position
 		  'oWnd.FitOnDisplay()
@@ -1650,10 +1650,10 @@ End
 #tag Events btnSetPosOnDisplay
 	#tag Event
 		Sub Pressed()
-		  Dim iDisplay As Integer = Val(lstPosDisplay.SelectedRowText)
+		  Dim iDisplay As Integer = lstPosDisplay.SelectedRowText.Val
 		  
-		  Dim iPosX As Integer = Val(edtPosDisplayX.Text)
-		  Dim iPosY As Integer = Val(edtPosDisplayY.Text)
+		  Dim iPosX As Integer = edtPosDisplayX.Text.Val
+		  Dim iPosY As Integer = edtPosDisplayY.Text.Val
 		  
 		  
 		  Dim oWnd As New Window2
@@ -1666,10 +1666,10 @@ End
 #tag Events btnSetPosOnDisplayWinAPI
 	#tag Event
 		Sub Pressed()
-		  Dim iMonitor As Integer = Val(lstPosDisplay.SelectedRowText)
+		  Dim iMonitor As Integer = lstPosDisplay.SelectedRowText.Val
 		  
-		  Dim iPosX As Integer = Val(edtPosDisplayX.Text)
-		  Dim iPosY As Integer = Val(edtPosDisplayY.Text)
+		  Dim iPosX As Integer = edtPosDisplayX.Text.Val
+		  Dim iPosY As Integer = edtPosDisplayY.Text.Val
 		  
 		  
 		  Dim oWnd As New Window2
@@ -1686,8 +1686,8 @@ End
 		  
 		  Dim setPositionRect As New Xojo.Rect
 		  
-		  setPositionRect.Left = Val(edtPosAbsoluteX.Text)
-		  setPositionRect.Top = Val(edtPosAbsoluteY.Text)
+		  setPositionRect.Left = edtPosAbsoluteX.Text.Val
+		  setPositionRect.Top = edtPosAbsoluteY.Text.Val
 		  setPositionRect.Width = oWnd.Width
 		  setPositionRect.Height = oWnd.Height
 		  
@@ -1703,8 +1703,8 @@ End
 		Sub Pressed()
 		  Dim oWnd As New Window2
 		  
-		  oWnd.Left = Val(edtPosAbsoluteX.Text)
-		  oWnd.Top = Val(edtPosAbsoluteY.Text)
+		  oWnd.Left = edtPosAbsoluteX.Text.Val
+		  oWnd.Top = edtPosAbsoluteY.Text.Val
 		  
 		  'This is buggy, too - so let's just see what happens when setting the position
 		  'oWnd.FitOnDisplay()
