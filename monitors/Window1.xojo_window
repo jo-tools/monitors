@@ -1509,9 +1509,9 @@ End
 		  
 		  Dim iPosX, iPosY As Integer
 		  
-		  Dim iScreen As Integer = Self.IsOnDisplay 'that's just using Xojo Framework (for WindowsAPI, use self.IsOnMonitorIndex)
-		  iPosX = Self.Left - DesktopDisplay.DisplayAt(iScreen).Left
-		  iPosY = Self.Top - DesktopDisplay.DisplayAt(iScreen).Top
+		  Dim iDisplay As Integer = Self.IsOnDisplay 'that's just using Xojo Framework (for WindowsAPI, use self.IsOnMonitorIndex)
+		  iPosX = Self.Left - DesktopDisplay.DisplayAt(iDisplay).Left
+		  iPosY = Self.Top - DesktopDisplay.DisplayAt(iDisplay).Top
 		  labPosRelativeOnScreen.Text = "at relative Screen Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
 		  
 		  Self.IsAtRelativeMonitorPosition(iPosX, iPosY) 'that's using Windows API if possible
@@ -1650,14 +1650,14 @@ End
 #tag Events btnSetPosOnScreen
 	#tag Event
 		Sub Pressed()
-		  Dim iScreen As Integer = Val(lstPosScreen.SelectedRowText)
+		  Dim iDisplay As Integer = Val(lstPosScreen.SelectedRowText)
 		  
 		  Dim iPosX As Integer = Val(edtPosScreenX.Text)
 		  Dim iPosY As Integer = Val(edtPosScreenY.Text)
 		  
 		  
 		  Dim oWnd As New Window2
-		  oWnd.SetPosition_AtScreenPosition(iScreen, iPosX, iPosY)
+		  oWnd.SetPosition_AtScreenPosition(iDisplay, iPosX, iPosY)
 		  oWnd.ShowModal
 		  
 		End Sub
