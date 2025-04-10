@@ -693,7 +693,7 @@ Begin DesktopWindow Window1
       TabIndex        =   30
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "on Screen:"
+      Text            =   "on Display:"
       TextAlignment   =   0
       TextColor       =   &c00000000
       Tooltip         =   ""
@@ -701,7 +701,7 @@ Begin DesktopWindow Window1
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   70
+      Width           =   75
    End
    Begin DesktopPopupMenu lstPosScreen
       AllowAutoDeactivate=   True
@@ -766,7 +766,7 @@ Begin DesktopWindow Window1
       Visible         =   True
       Width           =   70
    End
-   Begin DesktopTextField edtPosScreenX
+   Begin DesktopTextField edtPosDisplayX
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   False
@@ -808,7 +808,7 @@ Begin DesktopWindow Window1
       Visible         =   True
       Width           =   50
    End
-   Begin DesktopTextField edtPosScreenY
+   Begin DesktopTextField edtPosDisplayY
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   False
@@ -1153,7 +1153,7 @@ Begin DesktopWindow Window1
       _mName          =   ""
       _mPanelIndex    =   0
    End
-   Begin DesktopLabel labPosRelativeOnScreen
+   Begin DesktopLabel labPosRelativeOnDisplay
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -1512,7 +1512,7 @@ End
 		  Dim iDisplay As Integer = Self.IsOnDisplay 'that's just using Xojo Framework (for WindowsAPI, use self.IsOnMonitorIndex)
 		  iPosX = Self.Left - DesktopDisplay.DisplayAt(iDisplay).Left
 		  iPosY = Self.Top - DesktopDisplay.DisplayAt(iDisplay).Top
-		  labPosRelativeOnScreen.Text = "at relative Screen Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
+		  labPosRelativeOnDisplay.Text = "at relative Display Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
 		  
 		  Self.IsAtRelativeMonitorPosition(iPosX, iPosY) 'that's using Windows API if possible
 		  labPosRelativeOnMonitor.Text = "at relative Monitor Pos: " + iPosX.ToString + "x, " + iPosY.ToString + "y"
@@ -1652,8 +1652,8 @@ End
 		Sub Pressed()
 		  Dim iDisplay As Integer = Val(lstPosScreen.SelectedRowText)
 		  
-		  Dim iPosX As Integer = Val(edtPosScreenX.Text)
-		  Dim iPosY As Integer = Val(edtPosScreenY.Text)
+		  Dim iPosX As Integer = Val(edtPosDisplayX.Text)
+		  Dim iPosY As Integer = Val(edtPosDisplayY.Text)
 		  
 		  
 		  Dim oWnd As New Window2
@@ -1668,8 +1668,8 @@ End
 		Sub Pressed()
 		  Dim iMonitor As Integer = Val(lstPosScreen.SelectedRowText)
 		  
-		  Dim iPosX As Integer = Val(edtPosScreenX.Text)
-		  Dim iPosY As Integer = Val(edtPosScreenY.Text)
+		  Dim iPosX As Integer = Val(edtPosDisplayX.Text)
+		  Dim iPosY As Integer = Val(edtPosDisplayY.Text)
 		  
 		  
 		  Dim oWnd As New Window2
