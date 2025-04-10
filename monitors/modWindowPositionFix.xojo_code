@@ -723,41 +723,16 @@ Protected Module modWindowPositionFix
 		      
 		      If (poParent = Nil) Then
 		        'put on on the Monitor first
-		        Dim iPosRectIsOnMonitorIndex As Integer = 0
-		        #If (XojoVersion < 2018.04) Then
-		          //<feedback://showreport?report_id=53050>
-		          'Window.Left is the absolute position on Display>0
-		          'But Display.Left reports the virtual position, however somehow mangled with the main Display's ScaleFactor.
-		          
-		          'so it seems best to get the destination Monitor like this:
-		          'iPosRectIsOnMonitorIndex = poSetPositionRect.IsOnMonitorIndex
-		          
-		          poWindow.PutOnMonitorIndex(0)
-		          rectWindow = poWindow.GetWindowRect
-		          Dim dScale0 As Double = Round((rectWindow.Height / poWindow.Bounds.Height)*100)/100
-		          
-		          For i As Integer = 1 To DesktopDisplay.DisplayCount-1
-		            poWindow.PutOnMonitorIndex(i)
-		            rectWindow = poWindow.GetWindowRect
-		            Dim dScaleCurrentMonitor As Double = Round((rectWindow.Height / poWindow.Bounds.Height)*100)/100
-		            Dim iDisplayLeft As Integer = DesktopDisplay.DisplayAt(i).Left * dScale0 / dScaleCurrentMonitor
-		            Dim iDisplayTop As Integer = DesktopDisplay.DisplayAt(i).Top * dScale0 / dScaleCurrentMonitor
-		            If (poSetPositionRect.Left >= iDisplayLeft) And (poSetPositionRect.Left < DesktopDisplay.DisplayAt(0).Width) And (poSetPositionRect.Top >= iDisplayTop) And (poSetPositionRect.Top < DesktopDisplay.DisplayAt(0).Height) Then
-		              iPosRectIsOnMonitorIndex = i
-		              Exit 'Loop
-		            End If
-		          Next
-		          
-		        #Else
-		          'Window.Left is the virtual position on Display>0
-		          'And Display.Left reports the virtual position
-		          'so let's check with Xojo's DesktopDisplay.DisplayAt(s), which should work again
-		          'to figure out the destination Monitor/Display
-		          
-		          'we obviously can't use the workaround from above, as IsOnMonitor is using
-		          'the absolute positions, but Window.Left doesn't do that any longer
-		          iPosRectIsOnMonitorIndex = poSetPositionRect.IsOnDisplay
-		        #EndIf
+		        
+		        'Window.Left is the virtual position on Display>0
+		        'And Display.Left reports the virtual position
+		        'so let's check with Xojo's DesktopDisplay.DisplayAt(s), which should work again
+		        'to figure out the destination Monitor/Display
+		        
+		        'we obviously can't use the workaround from above, as IsOnMonitor is using
+		        'the absolute positions, but Window.Left doesn't do that any longer
+		        Dim iPosRectIsOnMonitorIndex As Integer = poSetPositionRect.IsOnDisplay
+		        
 		        poWindow.PutOnMonitorIndex(iPosRectIsOnMonitorIndex)
 		        
 		        'that's because we need the ScaleFactor to calculate the WindowsAPI position
@@ -773,25 +748,11 @@ Protected Module modWindowPositionFix
 		        
 		        'position it
 		        //NOTE: We're relying on Xojo here... things may go wrong...
-		        #If (XojoVersion < 2018.04) Then
-		          rectWindow.Left = Ceiling(poSetPositionRect.Left * dScale)
-		          rectWindow.Top = Ceiling(poSetPositionRect.Top * dScale)
-		          
-		          'Position values relative to Monitor
-		          Dim iMonitorIndex As Integer = rectWindow.IsOnMonitorIndex
-		          Dim rectMonitor As Xojo.Rect = GetMonitorRect(MonitorHandle(iMonitorIndex), False)
-		          're-scale in Xojo coordinates
-		          Dim iPosX As Integer = Ceiling((rectWindow.Left - rectMonitor.Left)/dScale)
-		          Dim iPosY As Integer = Ceiling((rectWindow.Top - rectMonitor.Top)/dScale)
-		          'place it at the desired Position on the Monitor
-		          poWindow.SetPosition_AtMonitorPosition(iMonitorIndex, iPosX, iPosY)
-		        #Else
-		          //Xojo 2018r4 seems to use virtual coordinates on all Displays
-		          'so let's just let Xojo set the position again
-		          poWindow.Left = poSetPositionRect.Left
-		          poWindow.Top = poSetPositionRect.Top
-		          poWindow.FitOnMonitorIndex(iPosRectIsOnMonitorIndex)
-		        #EndIf
+		        //Xojo 2018r4+ seems to use virtual coordinates on all Displays
+		        'so let's just let Xojo set the position again
+		        poWindow.Left = poSetPositionRect.Left
+		        poWindow.Top = poSetPositionRect.Top
+		        poWindow.FitOnMonitorIndex(iPosRectIsOnMonitorIndex)
 		        
 		        'all done
 		        Return
