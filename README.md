@@ -33,12 +33,12 @@ Example application: **Windows**
 [Xojo](https://www.xojo.com/) is a rapid application development for Desktop, Web, Mobile & Raspberry Pi.  
 
 The Desktop application Xojo example project ```Monitors.xojo_project``` is using:
-- Xojo 2018r4
-- API 1
+- Xojo 2024r4.2
+- API 2
 
 ### How to use in your own Xojo project?
 1. Copy the Module ```modWindowPositionFix``` to your project.
-2. Have a look at how the example projects is using the provided Methods.  
+2. Have a look at how the example project is using the provided Methods.  
    E.g.: ```aWindowInstance.FitOnMonitor()```
 
 
